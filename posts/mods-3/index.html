@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>To BRBEATLP.958 and beyond (part 3): Parsing ancient scriptures - Matt Bargenquast</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://bargenqua.st/img/mods3thumb.jpg"/>
+
+<meta name="twitter:title" content="To BRBEATLP.958 and beyond (part 3): Parsing ancient scriptures"/>
+<meta name="twitter:description" content="The story so far Obsessed with the muffled, 8KHz mono perfection of a drum-loop used in an old ScreamTracker III module, I aim to seek out how many other modules may have used the same sample.. but not before some hard nostalgia-blast reminiscing over the tracking subculture as a whole.
+ Part one Part two  Forming the battle plan First thing&#39;s first: if I was to figure out how many other songs might&#39;ve used BRBEATLP."/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Matt Bargenquast" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Matt Bargenquast</div>
+					<div class="logo__tagline">Hello I&#39;m new here.</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">To BRBEATLP.958 and beyond (part 3): Parsing ancient scriptures</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-12-31T10:27:00&#43;10:00">December 31, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/coding/" rel="category">Coding</a>
+	</span>
+</div></div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-story-so-far">The story so far</a></li>
+    <li><a href="#forming-the-battle-plan">Forming the battle plan</a></li>
+    <li><a href="#adventures-in-parsing">Adventures in parsing</a>
+      <ul>
+        <li><a href="#protracker">Protracker</a></li>
+        <li><a href="#screamtracker">ScreamTracker</a></li>
+        <li><a href="#fasttracker-2">FastTracker 2</a></li>
+        <li><a href="#impulse-tracker">Impulse Tracker</a></li>
+        <li><a href="#wait-hang-on">Wait, hang on..</a></li>
+      </ul>
+    </li>
+    <li><a href="#in-the-next-entry">In the next entry</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<h2 id="the-story-so-far">The story so far</h2>
+<p>Obsessed with the muffled, 8KHz mono perfection of a drum-loop used in an old ScreamTracker III module, I aim to seek out how many other modules may have used the same sample.. but not before some hard nostalgia-blast reminiscing over the tracking subculture as a whole.</p>
+<ul>
+<li><a href="../mods-1">Part one</a></li>
+<li><a href="../mods-2">Part two</a></li>
+</ul>
+<h2 id="forming-the-battle-plan">Forming the battle plan</h2>
+<p>First thing's first: if I was to figure out how many other songs might've used <code>BRBEATLP.958</code> in them, I needed to get my hands on as many tracker songs as I possibly could.</p>
+<p>Back in the day, <a href="https://hornet.org">hornet.org</a> was <em>the</em> place to go for this kind of thing. And it still exists now, as does <a href="https://files.scene.org/browse/music/">scene.org</a>. But the best place I found to get the most comprehensive snapshot of modules was <a href="http://tracker.modarchive.org/">modarchive's torrent archives</a> - over 40GB worth of tracker music from the 90s up until today,  constituting well over 130,000 individual songs. The folks seeking those torrents deserve a tonne of thanks for helping to keep this amazing digital archive around and available.</p>
+<p>With modules gathered, my next task was a bit more daunting. It wouldn't be enough to simply scan modules looking for samples with the matching name <code>BRBEATLP.958</code> - for one, some module formats didn't have a <code>filename</code> metadata field for their samples, and there would also be nothing to guarantee that a composer wouldn't have just renamed the sample to whatever they liked (and indeed, this did turn out to be the case.. but more on that later!)</p>
+<p>I therefore figured that I'd get the most accurate results for my search by calculating a checksum of the sample, and then looking for any other samples that had a matching checksum. This wasn't going to catch cases where the sample had been converted into a different format or codec (thus altering the underlying data), but it'd be good enough to find the cases where someone had saved the raw sample off and imported it directly into their own song.</p>
+<p>Now, the problem with <em>that</em> approach was: how exactly was I going to get a checksum of every sample of every mod in order to figure that out? Well, in lieu of finding any existing ways to do that easily, the immediate answer that came to mind was - write it all myself.</p>
+<h2 id="adventures-in-parsing">Adventures in parsing</h2>
+<p>As noted in part 2, I settled on the four most prevalent formats to work with: ProTracker, ScreamTracker, FastTracker and Impulse Tracker. Fortunately, my goals were somewhat simplified by the fact that I didn't need to write a fully feature-complete parser - I only needed to identify, extract and checksum the samples contained there-in. However, as I'll note later - this was easier said than done in some cases!</p>
+<p>The code for all of this is sitting in a <a href="https://github.com/mrbarge/go-mod">Github repo</a> - I'm not quite sure it would be useful for anybody except me, but it is nevertheless there.</p>
+<h3 id="protracker">Protracker</h3>
+<p>Writing a parser for ProTracker was by far the easiest of the four - and I actually wrote a relatively complete parser for this one, including parsing patterns. This was due in no small part to the format's relative simplicity and the prevalence of good documentation.</p>
+<p>In fact, I'd written a good portion of the parsing code quite some years ago as my first foray into learning Golang. As a result, whilst the code was exceptionally terrible, it at least provided an easy jumping-off point for finding and processing the sample data and kickstarted this whole endeavour.</p>
+<p>Fun parsing fact: we learned in part two that many tracker programs would extend the mod format in various ways - and one such way of identifying these variants is through four bytes at offset 1080. From one of the documentation specs about its potential values:</p>
+<blockquote>
+<p>&ldquo;The four letters &ldquo;<code>M.K.</code>&rdquo;: these are the initials of Unknown/D.O.C. who changed the format so it could handle 31 samples (sorry.. they were not inserted by Mahoney &amp; Kaktus [1]). Startrekker puts &ldquo;<code>FLT4</code>&rdquo; or &ldquo;<code>FLT8</code>&rdquo; here to indicate the # of channels. If there are more than 64 patterns, Protracker will put &ldquo;<code>M!K!</code>&rdquo; here. You might also find: &ldquo;<code>6CHN</code>&rdquo; or &ldquo;<code>8CHN</code>&rdquo; which indicate 6 or 8 channels respectively.</p>
+<p>[1] Developers of <a href="https://en.wikipedia.org/wiki/NoiseTracker">NoiseTracker</a>.</p>
+</blockquote>
+<p>One other gotcha with writing a ProTracker parser is to remember that <a href="https://en.wikipedia.org/wiki/Endianness">endianness</a> matters - something I hadn't needed to consider since I stopped working on Solaris SPARCs decades ago! Given that the ProTracker format originated on the Amiga, which itself was a big-endian platform, reading multi-byte values had to be done with big-endianness in mind. Doing this gave me <em>way</em> too many painful flashbacks to time spent debugging audio codec libraries as part of my job in the early 00s.</p>
+<ul>
+<li><a href="https://www.aes.id.au/modformat.html">NoiseTracker/SoundTracker/ProTracker Module Format</a></li>
+<li><a href="https://www.eblong.com/zarf/blorb/mod-spec.txt">mod-spec.txt</a></li>
+</ul>
+<h3 id="screamtracker">ScreamTracker</h3>
+<p>Writing a parser for ScreamTracker III was also relatively straightforward. There's decent documentation and plenty of it. One brief hassle I had was understanding what a &ldquo;parapointer&rdquo; was, as they're referenced throughout the fileformat spec as an offset and weren't a traditional byte offset. Turns out that parapointers are offsets where each unit represents a span of 16 bytes - so, to transform it into a byte offset, you'd multiply the value by 16. As best I can tell, the term &ldquo;parapointer&rdquo; is one that's wholly unique to ScreamTracker 3 and not something used in wider computer science - but if it does, it must go by a different name. I'd genuinely love to know.</p>
+<p>The other tricky bit about parsing this format is that we now have to potentially deal with signed and unsigned sample data. Whilst the data format supports both types, samples in ScreamTracker files are almost always stored unsigned. This will be of importance later.</p>
+<ul>
+<li><a href="https://formats.kaitai.io/s3m/index.html">Scream Tracker 3 module: format specification</a> (the block diagram was a great reference)</li>
+<li><a href="https://wiki.multimedia.cx/index.php/Scream_Tracker_3_Module">Scream Tracker 3 Module</a></li>
+</ul>
+<h3 id="fasttracker-2">FastTracker 2</h3>
+<p>FastTracker is an interesting format because it's the first one to deal with both instruments and samples. An instrument is like additional wrapping on top of samples which instructs how the samples are played (panning, vibrato, volume), whilst the sample is the same old raw audio data that we're used to.</p>
+<p>Now, FastTracker can handle both 8-bit and 16-bit samples. I did write the ability to extract both types, and gathered data on both, but consciously decided to ignore 16-bit samples when searching for <code>BRBEATLP.958</code> matches - the original sample was 8-bit mono, so even though it was technically possible that someone might've converted it up to 16-bit when using it in a FastTracker song, I felt it was a pretty unlikely occurrence.</p>
+<p>A lot of the challenge in writing the FastTracker parser was just getting the offsets correct. You have to jump around the file quite a bit based on the numbers and sizes of patterns, instruments and samples themselves, all of which can be variable, so it added a small extra layer of complication over the existing formats.</p>
+<p>The other catch here was that FastTracker samples are <em>signed</em>. I was initially getting confused when FastTracker songs that I <em>knew</em> used <code>BRBEATLP.958</code> were not producing the same checksums as their ScreamTracker cousins, and thought that my parser had a bug. In reality, it was because my ScreamTracker checksums were being generated based on <em>unsigned</em> sample data.</p>
+<p>My workaround for this was to convert all ScreamTracker samples into 8-bit signed data before computing a checksum - that way I'd get matching checksums across both formats.</p>
+<ul>
+<li><a href="http://www.soma.pirate-server.com/projects/experiments/xm/XM_file_format.pdf">The UnOfficial XM File Format Specification</a></li>
+<li><a href="http://jss.sourceforge.net/moddoc/xm-form.txt">The &ldquo;Complete&rdquo; XM module format specification</a></li>
+</ul>
+<h3 id="impulse-tracker">Impulse Tracker</h3>
+<p>Oh dear.. Here's where it got a bit headachy for me, and where I ended up pausing any work on this project at all for a couple of months.</p>
+<p>It's not that Impulse Tracker documentation doesn't exist - <a href="https://github.com/schismtracker/schismtracker/wiki/ITTECH.TXT">it does</a> - but it didn't contain all the information that I needed - and even when following it correctly, I found cases of offsets that were confusingly not in line with what the spec said should be happening (and whilst I'm sure my code could have bugs, I was verifying this by poring over the files through a hex editor). Adding to that, Impulse Tracker can optionally store samples in a compressed form. But details on how this compression scheme works are not in any specification I could find.</p>
+<p>There are other little gotchas as well, for instance, some .IT files may have been created using a FastTracker-to-Impulse Tracker conversion tool which writes some of the file metadata incorrectly. The file format also underwent several revisions as the software progressed, so depending on the file format version you may have to read the file differently.</p>
+<p>Whilst many of these problems were probably surmountable, trying to decipher how to write the decompression code for samples was what really became a blocker with my very scarce amounts of free time.</p>
+<p>Since a lot of the hard work on parsing .IT files had already been done with the <a href="https://openmpt.org/">OpenMPT player</a>, I eventually got the bright idea to write a small C++ program that would use <a href="https://github.com/OpenMPT/openmpt/blob/553389d97cb61ea8e9acaa40c995e0dc411beb2d/soundlib/Load_it.cpp">openmpt's .IT parser</a> to do all the hard work of loading the .IT file correctly, then I could grab and checksum the samples in memory. This worked really well and ended up being my solution here.</p>
+<ul>
+<li><a href="https://github.com/schismtracker/schismtracker/wiki/ITTECH.TXT">ITTECH.TXT</a> - .IT format specification.</li>
+</ul>
+<h3 id="wait-hang-on">Wait, hang on..</h3>
+<p>The realization was not lost on me that I could've used the same OpenMPT-based method for <em>all</em> the different types of tracker formats. And yes indeed I could have - and probably would've been able to gather the data with much more accuracy and in less time than it took me via the Do-It-Yourself approach. But for me, this was as much of a learning exercise as it was simply a quest to find the family tree of <code>BRBEATLP.958</code>. When I was a teenager, I'd always wanted to write my own tracker audio player, but never found enough time and inspiration to do it. After the efforts spent above.. well, I sure as heck won't be writing one any time soon, but I'm satisfied that I probably got.. hmm.. at least 15% of the way there, let's say.</p>
+<h2 id="in-the-next-entry">In the next entry</h2>
+<p>All up, these efforts resulted in extracting and checksumming 2,147,369 different samples spread across 135,040 different tracker files.</p>
+<p>Did all this result in any amazing insights? How many times was <code>BRBEATLP.958</code> used in tracker music? And could anyone except me possibly find any of that interesting?</p>
+<p>Well.. I guess that'll all be a tale for the next (and final) blog! Until then - thanks for sticking around.</p>
+<ul>
+<li>On to <a href="../mods-4">Part Four</a></li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/retro/" rel="tag">retro</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Matt Bargenquast avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Matt Bargenquast</span>
+	</div>
+	<div class="authorbox__description">
+		I'm the one in Australia.
+	</div>
+</div>
+
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "mbarg" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://bargenqua.st/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/mods-5/">To BRBEATLP.958 and beyond (Epilogue)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/cks/">Everything you need to know about the CKS Kubernetes Security Specialist certification (except the answers)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/s2i-python-setuptools/">Keeping setuptools updated in OpenShift Python S2I</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/mods-4/">To BRBEATLP.958 and beyond (part 4): A mystery solved</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/mods-3/">To BRBEATLP.958 and beyond (part 3): Parsing ancient scriptures</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud/">Cloud</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/coding/">Coding</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/things-i-read/">Things I Read</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/year-in-review/">Year In Review</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/advent-of-code/" title="advent of code">advent of code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bash/" title="bash">bash</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/culture/" title="culture">culture</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="golang">golang</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/json/" title="json">json</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="kubernetes">kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="linux">linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openshift/" title="openshift">openshift</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/programming/" title="programming">programming</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="python">python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/retro/" title="retro">retro</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-scripting/" title="shell scripting">shell scripting</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/MattBargenquast" target="_blank">
+				<svg class="widget-social__link-icon icon icon-twitter" width="24" height="24" viewBox="0 0 384 312"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/mrbarge" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:matt@bargenqua.st">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>matt@bargenqua.st</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 Matt Bargenquast.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

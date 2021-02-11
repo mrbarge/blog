@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on Matt Bargenquast</title>
+    <link>https://bargenqua.st/tags/golang/</link>
+    <description>Recent content in golang on Matt Bargenquast</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 Dec 2020 14:07:21 +1000</lastBuildDate>
+    
+	<atom:link href="https://bargenqua.st/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Advent of Code 2020 reflections</title>
+      <link>https://bargenqua.st/posts/aoc-2020/</link>
+      <pubDate>Sat, 26 Dec 2020 14:07:21 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/aoc-2020/</guid>
+      <description>Advent of Code has wrapped for another year, so I figured I’d write a companion piece to last year’s blog about the same topic with some brief thoughts and reflections on 2020’s event.
+Overall feelings I quite enjoyed this year’s collection of puzzles. Unlike last year’s Intcode theme - which spanned almost the entirety of the month - each puzzle this year was its own standalone thing. There were also no puzzles that I felt demanded much algorithmic knowledge, with nary a shortest-path problem to be seen - much to my relief, as they’ve historically always been the more challenging ones for me.</description>
+    </item>
+    
+    <item>
+      <title>Advent of Code 2019: personal wrap-up</title>
+      <link>https://bargenqua.st/posts/aoc-2019-wrapup/</link>
+      <pubDate>Sun, 29 Dec 2019 09:52:59 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/aoc-2019-wrapup/</guid>
+      <description>In the previous blog I described why Advent of Code is an awesome and creative way to exercise your programming skills. A few days ago I wrapped up 2019&#39;s problems, although I must admit I needed some serious help (read: reading someone else&#39;s solution) to do Day 22 Part 2.
+This year was also the first year that I managed to convince some work colleagues to join me on the AoC train, which made for some fun watercooler discussions in the morning where we could talk about the ways we solved (or got stuck) on the previous day&#39;s problem.</description>
+    </item>
+    
+    <item>
+      <title>Why you should try Advent of Code</title>
+      <link>https://bargenqua.st/posts/aoc-2019/</link>
+      <pubDate>Sat, 28 Dec 2019 13:27:21 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/aoc-2019/</guid>
+      <description>Why AoC? I&#39;ve long wanted to write a blog promoting the merits of Advent of Code and - since it has just wrapped up its fifth year - there seems to be no better time like the present.
+Advent of Code (or AoC as I&#39;ll refer to it hereafter) is a solo effort by Eric Wastl. Commencing each year on December 1st, it presents an advent calendar-style series of daily programming challenges in the lead-up to Christmas.</description>
+    </item>
+    
+  </channel>
+</rss>

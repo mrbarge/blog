@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>openshift on Matt Bargenquast</title>
+    <link>https://bargenqua.st/tags/openshift/</link>
+    <description>Recent content in openshift on Matt Bargenquast</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Feb 2021 20:01:00 +1000</lastBuildDate>
+    
+	<atom:link href="https://bargenqua.st/tags/openshift/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Everything you need to know about the CKS Kubernetes Security Specialist certification (except the answers)</title>
+      <link>https://bargenqua.st/posts/cks/</link>
+      <pubDate>Wed, 03 Feb 2021 20:01:00 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/cks/</guid>
+      <description>Having just passed the exam myself, I wanted to do a write-up whilst many of these thoughts are fresh in my mind. Disclaimer: opinions are my own, not my employer&#39;s, etc.
+What is it? The Certified Kubernetes Security Specialist (CKS) is a certification course offered by the Linux Foundation. It builds on the skills required by the Certified Kubernetes Administrator (CKA) certification with a focus on Kubernetes and cloud security. It’s a relatively new certification, having been released in November 2020, and requires the practitioner to firstly hold an active CKA certification.</description>
+    </item>
+    
+    <item>
+      <title>Keeping setuptools updated in OpenShift Python S2I</title>
+      <link>https://bargenqua.st/posts/s2i-python-setuptools/</link>
+      <pubDate>Tue, 19 Jan 2021 20:42:00 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/s2i-python-setuptools/</guid>
+      <description>After a recent commit to a Python project that I work on, I noticed that my resulting OpenShift pod had begun crashlooping after the rebuild.
+A quick check of the pod logs showed why: for some reason, it could no longer find the alembic module, despite that being a transitive dependency of SQLAlchemy, which my project already had in its requirements.txt.
+Curious, I checked the build logs and noticed an odd error during the dependency install:</description>
+    </item>
+    
+    <item>
+      <title>Patching Kubernetes resources with kubectl</title>
+      <link>https://bargenqua.st/posts/kubectl-patching/</link>
+      <pubDate>Mon, 17 Feb 2020 21:02:21 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/kubectl-patching/</guid>
+      <description>In this blog we&#39;re going to learn how we can use kubectl&#39;s patch command to modify the configuration of Kubernetes-managed resources via the command-line. Before we do that though, we&#39;ll go through a quick primer on how you can display Kubernetes resources so that you know what and where to patch.
+Getting Kuberenetes resources One of the first kubectl commands a Kubernetes beginner will become intimately acquainted with is the get command.</description>
+    </item>
+    
+  </channel>
+</rss>

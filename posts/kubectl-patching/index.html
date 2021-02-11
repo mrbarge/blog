@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Patching Kubernetes resources with kubectl - Matt Bargenquast</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://bargenqua.st/img/teddypatch.jpg"/>
+
+<meta name="twitter:title" content="Patching Kubernetes resources with kubectl"/>
+<meta name="twitter:description" content="In this blog we&#39;re going to learn how we can use kubectl&#39;s patch command to modify the configuration of Kubernetes-managed resources via the command-line. Before we do that though, we&#39;ll go through a quick primer on how you can display Kubernetes resources so that you know what and where to patch.
+Getting Kuberenetes resources One of the first kubectl commands a Kubernetes beginner will become intimately acquainted with is the get command."/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Matt Bargenquast" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Matt Bargenquast</div>
+					<div class="logo__tagline">Hello I&#39;m new here.</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Patching Kubernetes resources with kubectl</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-02-17T21:02:21&#43;10:00">February 17, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/cloud/" rel="category">Cloud</a>
+	</span>
+</div></div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#getting-kuberenetes-resources">Getting Kuberenetes resources</a></li>
+    <li><a href="#patching-kubernetes-resources">Patching Kubernetes resources</a>
+      <ul>
+        <li><a href="#patching-the-json-merge-way">Patching the JSON Merge way</a></li>
+        <li><a href="#patching-the-json-patch-way">Patching, the JSON Patch way</a></li>
+        <li><a href="#patching-strategically">Patching strategically</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-fine-print">The fine print</a>
+      <ul>
+        <li><a href="#look-before-you-leap">Look before you leap</a></li>
+        <li><a href="#yaml-is-fine-too">YAML is fine too</a></li>
+        <li><a href="#openshiftokd-and-patching">OpenShift/OKD and patching</a></li>
+        <li><a href="#why-are-there-so-many-different-ways-to-mess-with-json-data">Why are there so many different ways to mess with JSON data?</a></li>
+        <li><a href="#for-more-reading">For more reading</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<p>In this blog we're going to learn how we can use <code>kubectl</code>'s <code>patch</code> command to modify the configuration of Kubernetes-managed resources via the command-line. Before we do that though, we'll go through a quick primer on how you can display Kubernetes resources so that you know what and where to patch.</p>
+<h2 id="getting-kuberenetes-resources">Getting Kuberenetes resources</h2>
+<p>One of the first <a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl</a> commands a Kubernetes beginner will become intimately acquainted with is the <a href="https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get">get</a> command. It displays all manner of different resources that Kubernetes is aware of, such as pods, deployments and secrets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#75715e"># kubectl get pods</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>NAME                           READY     STATUS    RESTARTS   AGE
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>appuio-php-docker-ex-1-build   1/1       Running   <span style="color:#ae81ff">0</span>          11s
+</code></pre></div><p>In the example above, we can see that the default behaviour of the <code>get</code> command is to produce human-readable output. We can customize that behaviour with the use of the <code>--output</code> (or <code>-o</code>) option to select from parseable formats such as <a href="https://yaml.org/">yaml</a> and <a href="https://www.json.org/">json</a>. These formats are useful to view in order to understand how we can subsequently patch them. In the example below we are retrieving the list of Kubernetes projects, but in YAML form:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#75715e"># kubectl get projects -o yaml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>apiVersion: v1
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>items:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>- apiVersion: project.openshift.io/v1
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>  kind: Project
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>  metadata:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    name: default
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>    namespace: <span style="color:#e6db74">&#34;&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>    resourceVersion: <span style="color:#e6db74">&#34;1205&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>  spec:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>    finalizers:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>    - kubernetes
+</code></pre></div><p>We can even define our own output formats via <a href="https://goessner.net/articles/JsonPath/index.html">JSONPath</a> or <a href="https://golang.org/pkg/text/template/">Golang templates</a>. These grant us the flexibility to specify the fields we want to see and how we wish to see them, making them useful for scenarios where we wish to feed the state of Kubernetes into other scripts. This is a useful technique to have at our disposal, so let's look at JSONPath in particular.</p>
+<p>JSONPath is similar in concept to <a href="https://stedolan.github.io/jq/">jq</a>, a well-known CLI tool for interacting with JSON. JSONPath has a different syntax for querying the JSON, but largely achieves the same goals. In the simple exmaple below, we'll use JSONPath to pull back the project name for a project that happens to have a matching UID value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#75715e"># kubectl get projects --output \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#75715e">#    jsonpath=&#39;{.items[?(@.metadata.uid==&#34;054dda83-4e53-11ea-aed8-000c29eb7917&#34;)].metadata.name}&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>hello
+</code></pre></div><p>However, if you're already quite familiar with <code>jq</code>, you can of course pipe your json output to it instead and achieve the same goal:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#75715e"># kubectl get projects --output json | \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#75715e">#    jq &#39;.items[] | select(.metadata.uid==&#34;054dda83-4e53-11ea-aed8-000c29eb7917&#34;) | .metadata.name&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#e6db74">&#34;hello&#34;</span>
+</code></pre></div><p>There is an excellent and steadily-growing resource of creative ways to use <code>kubectl</code> and <code>jsonpath</code> to produce a concise summary of information over in this <a href="https://gist.github.com/so0k/42313dbb3b547a0f51a547bb968696ba">github gist</a>.</p>
+<h2 id="patching-kubernetes-resources">Patching Kubernetes resources</h2>
+<p>Now that we know how to display Kubernetes resources, let's learn how we can modify them. <code>kubectl</code> provides the <a href="https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#patch">patch</a> command for exactly this purpose. What's more, it provides three different techniques for applying patches, each of which has advantages (or disadvantages) in certain situations. Whilst you might be able to get away with its default behaviour (the &ldquo;<em>strategic merge</em>&quot;) for most scenarios, being aware of the other techniques is helpful. We're going to look at those alternate methods first, and then see how the default behaviour differs.</p>
+<h3 id="patching-the-json-merge-way">Patching the JSON Merge way</h3>
+<p>JSON Merge is the first technique we'll explore, and - as the name would suggest - lets you merge new JSON into existing JSON document. To illustrate this with an example, let's first create a configmap:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#75715e"># kubectl create configmap hello-config \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#75715e">#    --from-literal=foo=bar --from-literal=beep=boop \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#75715e">#    -o json</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>configmap/hello-config created
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>    <span style="color:#e6db74">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;v1&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    <span style="color:#e6db74">&#34;data&#34;</span>: <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>        <span style="color:#e6db74">&#34;beep&#34;</span>: <span style="color:#e6db74">&#34;boop&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>        <span style="color:#e6db74">&#34;foo&#34;</span>: <span style="color:#e6db74">&#34;bar&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>    <span style="color:#f92672">}</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>    <span style="color:#e6db74">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;ConfigMap&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>    <span style="color:#e6db74">&#34;metadata&#34;</span>: <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>        ... output trimmed ...
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>    <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#f92672">}</span>
+</code></pre></div><p>To use the JSON Merge technique when patching, we must provide the <code>--type=merge</code> argument, and then supply the JSON to merge in. If we want to change the value of the <code>foo</code> key, we can simply supply that portion of the JSON:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#75715e"># kubectl patch configmap hello-config \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#75715e">#     --type=merge -p &#39;{&#34;data&#34;: {&#34;foo&#34;: &#34;baz&#34;}}&#39; \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#75715e">#     -o json</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>configmap/hello-config patched
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>    <span style="color:#e6db74">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;v1&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    <span style="color:#e6db74">&#34;data&#34;</span>: <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>        <span style="color:#e6db74">&#34;beep&#34;</span>: <span style="color:#e6db74">&#34;boop&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>        <span style="color:#e6db74">&#34;foo&#34;</span>: <span style="color:#e6db74">&#34;baz&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>    <span style="color:#f92672">}</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>    ... output trimmed ...
+</code></pre></div><p>If we supply previously non-existent JSON, it will just get merged straight in. The example below illustrates this, by adding an additional key-value pair:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#75715e"># kubectl patch configmap hello-config \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#75715e">#     --type=merge -p &#39;{&#34;data&#34;: {&#34;new&#34;: &#34;yes&#34;}}&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#75715e">#     -o json</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>configmap/hello-config patched
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>    <span style="color:#e6db74">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;v1&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    <span style="color:#e6db74">&#34;data&#34;</span>: <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>        <span style="color:#e6db74">&#34;beep&#34;</span>: <span style="color:#e6db74">&#34;boop&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>        <span style="color:#e6db74">&#34;foo&#34;</span>: <span style="color:#e6db74">&#34;baz&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>        <span style="color:#e6db74">&#34;new&#34;</span>: <span style="color:#e6db74">&#34;yes&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>    <span style="color:#f92672">}</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>    ... output trimmed ...
+</code></pre></div><p>There is a catch, however! When you use this technique on JSON arrays it will replace the entire array, rather than merge a new item into it. Let's see that with an example.</p>
+<p>We'll start with a <code>limitrange</code> definition for <code>pods</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#75715e"># echo &#34;&#34;&#34;apiVersion: v1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#75715e"># kind: LimitRange</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#75715e"># metadata:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span style="color:#75715e">#   creationTimestamp: 2020-02-16T11:51:35Z</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#75715e">#   name: core-resource-limits</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#75715e">#   namespace: myproject</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style="color:#75715e"># spec:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#75715e">#   limits:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#75715e">#   - max:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#75715e">#       memory: 1Gi</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#75715e">#     min:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#75715e">#       memory: 6Mi</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style="color:#75715e">#     type: Pod&#34;&#34;&#34; | oc create -f -</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>limitrange/core-resource-limits created
+</code></pre></div><p>We'll now attempt to add a new array element for <code>containers</code> with the <code>merge</code> technique:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#75715e"># kubectl patch limitrange core-resource-limits \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#75715e">#     --type=merge -p &#39;&#39;&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#75715e">#         { &#34;spec&#34;:</span> 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span style="color:#75715e">#             { &#34;limits&#34;: [</span> 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#75715e">#                { &#34;default&#34; : { &#34;memory&#34;: &#34;200Mi&#34;},</span> 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#75715e">#                  &#34;defaultRequest&#34; : { &#34;memory&#34;: &#34;200Mi&#34;},</span> 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style="color:#75715e">#                  &#34;type&#34;: &#34;Container&#34;}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#75715e">#                ]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#75715e">#             }</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#75715e">#         }&#39;&#39;&#39; \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#75715e">#     -o yaml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#e6db74">&#34;core-resource-limits&#34;</span> patched
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>spec:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>  limits:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>  - default:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>      memory: 200Mi
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>    defaultRequest:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>      memory: 200Mi
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>    type: Container
+</code></pre></div><p>Our entire array has been replaced by the new item, which we clearly don't want. How can we perform patches on arrays non-destructively? Our remaining two <code>kubectl</code> patching methods cater for that.</p>
+<p>More information on the JSON Merge technique can be read about <a href="https://tools.ietf.org/html/rfc7386">in RFC7386</a>.</p>
+<h3 id="patching-the-json-patch-way">Patching, the JSON Patch way</h3>
+<p>The next technique we'll look at is known as the <a href="https://tools.ietf.org/html/rfc6902">JSON Patch</a>. This allows for a more sophisticated ability to manipulate the JSON by allowing us to be explicit about the technique we wish to perform (<code>add</code>, <code>remove</code>, <code>replace</code>, <code>move</code> and <code>copy</code>) and what we wish to see affected.</p>
+<p>To apply the <code>JSON Patch</code> technique, we need to:</p>
+<ul>
+<li>inform <code>kubectl</code> via the <code>--type=json</code> argument.</li>
+<li>specify the operation taking place (<code>replace</code>, <code>add</code>, <code>move</code>, and so on)</li>
+<li>specify the <code>path</code> to the JSON where the patch is applied</li>
+<li>specify the <code>value</code> to be used in the patch</li>
+</ul>
+<p>Here's an example below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>[{ <span style="color:#f92672">&#34;op&#34;</span>: <span style="color:#e6db74">&#34;add&#34;</span>, 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>   <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/spec/containers/-&#34;</span>, 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>   <span style="color:#f92672">&#34;value&#34;</span>: {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>     <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;php-hello-world&#34;</span>, 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>     <span style="color:#f92672">&#34;image&#34;</span>: <span style="color:#e6db74">&#34;php-hello-world-1.0&#34;</span> 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span>   }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span>}]
+</code></pre></div><p>As we've seen earlier, the <code>JSON Merge</code> technique is poor for array operations, but this is a place in which <code>JSON Patch</code> excels. Using array-like indexing, we can be surgical about where in the array an item should be patched. Let's revisit our earlier <code>limitrange</code> patching example with a <code>JSON Patch</code> approach.</p>
+<p>As you'll recall, our JSON looks like the example below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>  limits:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>  - max:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>      memory: 1Gi
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>    min:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>      memory: 6Mi
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span>    type: Pod
+</code></pre></div><p>We wish to add a new array element. We'll do so at the end of the array, indicated using the <code>-</code> symbol.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#75715e"># kubectl patch --type=json \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#75715e">#     limitrange core-resource-limits -p &#39;&#39;&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#75715e">#       [{ &#34;op&#34;: &#34;add&#34;,</span> 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span style="color:#75715e">#           &#34;path&#34;: &#34;/spec/limits/-&#34;,</span> 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#75715e">#           &#34;value&#34;: {</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#75715e">#             &#34;defaultRequest&#34; : {</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style="color:#75715e">#               &#34;memory&#34;: &#34;200Mi&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#75715e">#             },</span> 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#75715e">#             &#34;type&#34;: &#34;Container&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="color:#75715e">#       }}]&#39;&#39;&#39; \</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#75715e">#     -o yaml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>spec:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>  limits:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>  - max:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>      cpu: <span style="color:#e6db74">&#34;2&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>      memory: 1Gi
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>    min:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>      cpu: 200m
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>      memory: 6Mi
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>    type: Pod
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>  - defaultRequest:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>      memory: 200Mi
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>    type: Container
+</code></pre></div><p>As you can see, both the existing and the new element are present within the array.</p>
+<p>There is one weakness with JSON Patch and array operations, however. We must know beforehand precisely where we want to operate on the array. We cannot, for example, search for the correct position to apply a patch based on the array's sub-elements.</p>
+<p>If we had a pod spec as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>spec:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>  containers:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>    - name: httpd
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>      image: httpd<span style="color:#ae81ff">-1.0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>    - name: sidecar
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span>      image: my-sidecar<span style="color:#ae81ff">-1.0</span>
+</code></pre></div><p>and we wanted to patch the <code>image</code> value for the <code>sidecar</code> container, can we do so? If we were confident that it always appeared in the second position of the array, maybe, but we can't always make that assumption. The last technique we'll look at, the <code>Strategic Merge</code>, goes some way towards alleviating this issue.</p>
+<p>By the way, if you're starting to get confused about JSON Patch and JSON Merge.. well, I don't blame you! But there is a <a href="http://erosb.github.io/post/json-patch-vs-merge-patch/">great resource</a> that summarizes the differences between the two.</p>
+<h3 id="patching-strategically">Patching strategically</h3>
+<p>The <code>Strategic Merge</code> is the default behaviour of <code>kubectl</code>. That is to say, if you don't specify a <code>--type</code> at all, it'll be interpreted as a strategic merge.</p>
+<p><code>Strategic Merge</code>s look similar to <code>JSON Merge</code>s, but are more array-aware through the application of a <em>patch strategy</em>. The patch strategy dictates what happens when a patch is applied to an array and is</p>
+<ul>
+<li><code>merge</code></li>
+<li><code>replace</code></li>
+<li><code>delete</code></li>
+</ul>
+<p>You can look up whether an array resource definition has a patch strategy defined in the <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#podspec-v1-core">Kubernetes API Documentation</a>. If there isn't one defined, the default strategy is to <code>replace</code> the array.</p>
+<p>Look at the <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#daemonset-v1-apps">documentation</a> for the <code>DaemonSet</code> resource definition as an example. We can see that:</p>
+<ul>
+<li>The <code>spec</code> sub-field is a <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#daemonsetspec-v1-apps">DaemonSetSpec</a>, which contains a <code>template</code> struct of type <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#podtemplatespec-v1-core">PodTemplateSpec</a>..</li>
+<li>..which contains a <code>spec</code> struct of type <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#podspec-v1-core">PodSpec</a>..</li>
+<li>..which contains a <code>containers</code> array of type <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#container-v1-core">Container</a>, which defines a patch strategy of <code>merge</code> and a <code>merge key</code> of <code>name</code>.</li>
+</ul>
+<p>The <em>merge key</em> is used as the distinguishing element between array field elements. Let's look at this in practice by attempting to patch a  <code>DaemonSet</code> example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span>apiVersion: apps/v1
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>kind: DaemonSet
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>metadata:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>  name: daemonset-example
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>spec:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>  selector:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    matchLabels:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>      app: daemonset-example
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>  template:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>    metadata:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>      labels:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>        app: daemonset-example
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>    spec:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>      containers:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>      - name: daemonset-example
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>        image: ubuntu:trusty
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>        command:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>        - /bin/sh
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>        args:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>        - -c
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>        - &gt;<span style="color:#e6db74">-
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span style="color:#e6db74">         </span><span style="color:#e6db74"> </span><span style="color:#e6db74">while [ true ]; do</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>          echo <span style="color:#e6db74">&#34;DaemonSet running on $(hostname)&#34;</span> ;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>          sleep <span style="color:#ae81ff">10</span> ;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>          done```
+</code></pre></div><p>The <code>name</code> field in the <code>containers</code> array is our merge key in this instance, uniquely identifying that particular array entry. We must therefore supply the <code>name</code> in our patch, alongside the value of <code>daemonset-example</code>. If we don't do that, our patch will be added in as a new array element instead of merging with the existing one.</p>
+<p>Let's patch the array entry to change the command to <code>bash</code>. Our patch will look like the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>{ <span style="color:#f92672">&#34;spec&#34;</span>: 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>  { <span style="color:#f92672">&#34;template&#34;</span>: 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>    { <span style="color:#f92672">&#34;spec&#34;</span>: 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>      { <span style="color:#f92672">&#34;containers&#34;</span>: 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>        [ { <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;daemonset-example&#34;</span>, <span style="color:#f92672">&#34;command&#34;</span>: [ <span style="color:#e6db74">&#34;/bin/bash&#34;</span> ] } ] 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span>      } 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span>    } 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span>  } 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span>}
+</code></pre></div><p>We can apply it as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>kubectl patch daemonset daemonset-example -p <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>cat patch.json<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> -o yaml
+</code></pre></div><p>and can subsequently observe that the command portion of the array entry has changed to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>        command:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>        - /bin/bash
+</code></pre></div><p>If we provided a different value of <code>name</code>, for instance <code>new-daemonset-example</code>, our patch would instead try to create a second list element using our patch. In our example, this would actually fail because our patch would be missing a required field:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">The DaemonSet <span style="color:#e6db74">&#34;daemonset-example&#34;</span> is invalid: 
+  spec.template.spec.containers<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>.image: Required value
+</code></pre></div><p>You might be wondering: what happens if you're operating on an array that doesn't seem to have a patch strategy defined? The default behaviour is to <em>replace</em> the list - in essence, the same behaviour that we observe with <code>JSON Merge</code>. Therefore, it is prudent to check what patch strategy might exist before rushing into performing a strategic merge operation on a list.</p>
+<p>To fully discuss the <code>strategic</code> technique is well beyond the scope of this article. However, the best documentation I have seen on the topic is available <a href="https://github.com/kubernetes/community/blob/master/contributors/devel/sig-api-machinery/strategic-merge-patch.md">here</a>.</p>
+<h2 id="the-fine-print">The fine print</h2>
+<h3 id="look-before-you-leap">Look before you leap</h3>
+<p>Patching a Kubernetes resource with <code>patch</code> is a venture that's risky. There's no backups kept, and no preserved history of your previous state. Whilst <code>kubectl</code> will protect you from outright corruption of the structural integrity of the resource (for example, by supplying improperly-formatted JSON), the changes are immediate and may impact running workloads.</p>
+<p>It may be wise to employ use of the <code>--dry-run</code> and <code>--output</code> parameters to see what your requested change would have done without actually carrying it out.</p>
+<h3 id="yaml-is-fine-too">YAML is fine too</h3>
+<p>In the examples above, we've supplied JSON representations of the various patches we've wanted to apply. But if you're more of a YAML person, you're in luck! YAML will work just as well.</p>
+<p>Because YAML is a newline-oriented format, the easiest way to supply it is by writing the patch to a file and then passing it to <code>kubectl</code> via a subshell:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># kubectl patch dc/hello-world -p &#34;$(cat mypatch.yaml)&#34;</span>
+</code></pre></div><h3 id="openshiftokd-and-patching">OpenShift/OKD and patching</h3>
+<p>We've been referring to <code>kubectl</code> above, but if you're a user of <a href="https://www.openshift.com">Red Hat OpenShift</a> or <a href="https://www.okd.io">OKD</a>, do note that the <code>oc</code> client behaves in the same manner and that all examples are cross-compatible.</p>
+<h3 id="why-are-there-so-many-different-ways-to-mess-with-json-data">Why are there so many different ways to mess with JSON data?</h3>
+<p>Sorry friend, you're asking the wrong person there.</p>
+<h3 id="for-more-reading">For more reading</h3>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/run-application/update-api-object-kubectl-patch/">The official Kubernetes documentation on patching</a></li>
+<li><a href="https://github.com/kubernetes/community/blob/master/contributors/devel/sig-api-machinery/strategic-merge-patch.md">More about strategic merge patching</a></li>
+</ul>
+<hr>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/json/" rel="tag">json</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/kubernetes/" rel="tag">kubernetes</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/openshift/" rel="tag">openshift</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Matt Bargenquast avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Matt Bargenquast</span>
+	</div>
+	<div class="authorbox__description">
+		I'm the one in Australia.
+	</div>
+</div>
+
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "mbarg" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://bargenqua.st/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/mods-5/">To BRBEATLP.958 and beyond (Epilogue)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/cks/">Everything you need to know about the CKS Kubernetes Security Specialist certification (except the answers)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/s2i-python-setuptools/">Keeping setuptools updated in OpenShift Python S2I</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/mods-4/">To BRBEATLP.958 and beyond (part 4): A mystery solved</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/mods-3/">To BRBEATLP.958 and beyond (part 3): Parsing ancient scriptures</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud/">Cloud</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/coding/">Coding</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/things-i-read/">Things I Read</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/year-in-review/">Year In Review</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/advent-of-code/" title="advent of code">advent of code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bash/" title="bash">bash</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/culture/" title="culture">culture</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="golang">golang</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/json/" title="json">json</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="kubernetes">kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="linux">linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openshift/" title="openshift">openshift</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/programming/" title="programming">programming</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="python">python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/retro/" title="retro">retro</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-scripting/" title="shell scripting">shell scripting</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/MattBargenquast" target="_blank">
+				<svg class="widget-social__link-icon icon icon-twitter" width="24" height="24" viewBox="0 0 384 312"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/mrbarge" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:matt@bargenqua.st">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>matt@bargenqua.st</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 Matt Bargenquast.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

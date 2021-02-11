@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Things I Read on Matt Bargenquast</title>
+    <link>https://bargenqua.st/categories/things-i-read/</link>
+    <description>Recent content in Things I Read on Matt Bargenquast</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Dec 2019 20:16:52 +1000</lastBuildDate>
+    
+	<atom:link href="https://bargenqua.st/categories/things-i-read/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blogs and articles I liked in 2019</title>
+      <link>https://bargenqua.st/posts/blogs-in-2019/</link>
+      <pubDate>Tue, 17 Dec 2019 20:16:52 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/blogs-in-2019/</guid>
+      <description>It&#39;s the end of the year, so I figured I&#39;d kick this blog off by highlighting the excellent work of other authors&amp;rsquo; blogs, articles and long-reads which I enjoyed through the year. This is by no means a comprehensive list - I&#39;m just going through things in my Instapaper account, which is largely just stuff I thought to archive rather than delete once I&#39;d read it. And, there&#39;s an obvious technology bias towards the content.</description>
+    </item>
+    
+  </channel>
+</rss>

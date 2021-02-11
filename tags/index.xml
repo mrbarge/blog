@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Matt Bargenquast</title>
+    <link>https://bargenqua.st/tags/</link>
+    <description>Recent content in Tags on Matt Bargenquast</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Feb 2021 20:22:00 +1000</lastBuildDate>
+    
+	<atom:link href="https://bargenqua.st/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>retro</title>
+      <link>https://bargenqua.st/tags/retro/</link>
+      <pubDate>Wed, 10 Feb 2021 20:22:00 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/retro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://bargenqua.st/tags/kubernetes/</link>
+      <pubDate>Wed, 03 Feb 2021 20:01:00 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openshift</title>
+      <link>https://bargenqua.st/tags/openshift/</link>
+      <pubDate>Wed, 03 Feb 2021 20:01:00 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/openshift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://bargenqua.st/tags/python/</link>
+      <pubDate>Tue, 19 Jan 2021 20:42:00 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>advent of code</title>
+      <link>https://bargenqua.st/tags/advent-of-code/</link>
+      <pubDate>Sat, 26 Dec 2020 14:07:21 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/advent-of-code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://bargenqua.st/tags/golang/</link>
+      <pubDate>Sat, 26 Dec 2020 14:07:21 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bash</title>
+      <link>https://bargenqua.st/tags/bash/</link>
+      <pubDate>Sat, 25 Apr 2020 14:45:38 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://bargenqua.st/tags/linux/</link>
+      <pubDate>Sat, 25 Apr 2020 14:45:38 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shell scripting</title>
+      <link>https://bargenqua.st/tags/shell-scripting/</link>
+      <pubDate>Sat, 25 Apr 2020 14:45:38 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/shell-scripting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>json</title>
+      <link>https://bargenqua.st/tags/json/</link>
+      <pubDate>Mon, 17 Feb 2020 21:02:21 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/json/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>culture</title>
+      <link>https://bargenqua.st/tags/culture/</link>
+      <pubDate>Tue, 17 Dec 2019 20:16:52 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/culture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://bargenqua.st/tags/programming/</link>
+      <pubDate>Tue, 17 Dec 2019 20:16:52 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

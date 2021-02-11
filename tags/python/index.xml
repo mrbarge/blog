@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Matt Bargenquast</title>
+    <link>https://bargenqua.st/tags/python/</link>
+    <description>Recent content in python on Matt Bargenquast</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Jan 2021 20:42:00 +1000</lastBuildDate>
+    
+	<atom:link href="https://bargenqua.st/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Keeping setuptools updated in OpenShift Python S2I</title>
+      <link>https://bargenqua.st/posts/s2i-python-setuptools/</link>
+      <pubDate>Tue, 19 Jan 2021 20:42:00 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/s2i-python-setuptools/</guid>
+      <description>After a recent commit to a Python project that I work on, I noticed that my resulting OpenShift pod had begun crashlooping after the rebuild.
+A quick check of the pod logs showed why: for some reason, it could no longer find the alembic module, despite that being a transitive dependency of SQLAlchemy, which my project already had in its requirements.txt.
+Curious, I checked the build logs and noticed an odd error during the dependency install:</description>
+    </item>
+    
+  </channel>
+</rss>
