@@ -6,11 +6,7 @@
     <description>Recent content in golang on Matt Bargenquast</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 26 Dec 2020 14:07:21 +1000</lastBuildDate>
-    
-	<atom:link href="https://bargenqua.st/tags/golang/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 26 Dec 2020 14:07:21 +1000</lastBuildDate><atom:link href="https://bargenqua.st/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Advent of Code 2020 reflections</title>
       <link>https://bargenqua.st/posts/aoc-2020/</link>
@@ -27,8 +23,8 @@ Overall feelings I quite enjoyed this year’s collection of puzzles. Unlike las
       <pubDate>Sun, 29 Dec 2019 09:52:59 +1000</pubDate>
       
       <guid>https://bargenqua.st/posts/aoc-2019-wrapup/</guid>
-      <description>In the previous blog I described why Advent of Code is an awesome and creative way to exercise your programming skills. A few days ago I wrapped up 2019&#39;s problems, although I must admit I needed some serious help (read: reading someone else&#39;s solution) to do Day 22 Part 2.
-This year was also the first year that I managed to convince some work colleagues to join me on the AoC train, which made for some fun watercooler discussions in the morning where we could talk about the ways we solved (or got stuck) on the previous day&#39;s problem.</description>
+      <description>In the previous blog I described why Advent of Code is an awesome and creative way to exercise your programming skills. A few days ago I wrapped up 2019&amp;rsquo;s problems, although I must admit I needed some serious help (read: reading someone else&amp;rsquo;s solution) to do Day 22 Part 2.
+This year was also the first year that I managed to convince some work colleagues to join me on the AoC train, which made for some fun watercooler discussions in the morning where we could talk about the ways we solved (or got stuck) on the previous day&amp;rsquo;s problem.</description>
     </item>
     
     <item>
@@ -37,8 +33,8 @@ This year was also the first year that I managed to convince some work colleague
       <pubDate>Sat, 28 Dec 2019 13:27:21 +1000</pubDate>
       
       <guid>https://bargenqua.st/posts/aoc-2019/</guid>
-      <description>Why AoC? I&#39;ve long wanted to write a blog promoting the merits of Advent of Code and - since it has just wrapped up its fifth year - there seems to be no better time like the present.
-Advent of Code (or AoC as I&#39;ll refer to it hereafter) is a solo effort by Eric Wastl. Commencing each year on December 1st, it presents an advent calendar-style series of daily programming challenges in the lead-up to Christmas.</description>
+      <description>Why AoC? I&amp;rsquo;ve long wanted to write a blog promoting the merits of Advent of Code and - since it has just wrapped up its fifth year - there seems to be no better time like the present.
+Advent of Code (or AoC as I&amp;rsquo;ll refer to it hereafter) is a solo effort by Eric Wastl. Commencing each year on December 1st, it presents an advent calendar-style series of daily programming challenges in the lead-up to Christmas.</description>
     </item>
     
   </channel>

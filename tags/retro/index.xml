@@ -6,10 +6,16 @@
     <description>Recent content in retro on Matt Bargenquast</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Feb 2021 20:22:00 +1000</lastBuildDate>
-    
-	<atom:link href="https://bargenqua.st/tags/retro/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sat, 19 Nov 2022 12:49:48 +1000</lastBuildDate><atom:link href="https://bargenqua.st/tags/retro/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I was a failed teenage game developer (part 1)</title>
+      <link>https://bargenqua.st/posts/failed-game-dev-1/</link>
+      <pubDate>Sat, 19 Nov 2022 12:49:48 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/failed-game-dev-1/</guid>
+      <description>This blog first appeared in 2008 as a guest article for a friend’s (long since removed) website. To consolidate some of my previous writing in the one place, it has been re-posted with permission, with some edits and lots of additional media added. Think of it like the HD remaster of an old videogame, except it’s a videogame no-one played because it wasn’t very good.
+I was a failed teenage game developer.</description>
+    </item>
     
     <item>
       <title>To BRBEATLP.958 and beyond (Epilogue)</title>
@@ -17,8 +23,8 @@
       <pubDate>Wed, 10 Feb 2021 20:22:00 +1000</pubDate>
       
       <guid>https://bargenqua.st/posts/mods-5/</guid>
-      <description>The story so far In order to explore the origins and prevalence of a personally-beloved drum loop sample named BRBEATLP.958, I fingerprinted and catalogued every sample of every MOD/S3M/XM/IT file in the Mod Archive so that I could hunt it down amidst tens of thousands of different songs. Now that we&#39;ve solved that mystery, let&#39;s wrap this up with an excursion through that data!
-Disclaimer: I&#39;ve done the best I can to clean the data I gathered and ensure its accuracy, but I&#39;m not going to stake any rigorous claims of perfection against it.</description>
+      <description>The story so far In order to explore the origins and prevalence of a personally-beloved drum loop sample named BRBEATLP.958, I fingerprinted and catalogued every sample of every MOD/S3M/XM/IT file in the Mod Archive so that I could hunt it down amidst tens of thousands of different songs. Now that we&amp;rsquo;ve solved that mystery, let&amp;rsquo;s wrap this up with an excursion through that data!
+Disclaimer: I&amp;rsquo;ve done the best I can to clean the data I gathered and ensure its accuracy, but I&amp;rsquo;m not going to stake any rigorous claims of perfection against it.</description>
     </item>
     
     <item>
@@ -27,8 +33,8 @@ Disclaimer: I&#39;ve done the best I can to clean the data I gathered and ensure
       <pubDate>Fri, 01 Jan 2021 10:22:00 +1000</pubDate>
       
       <guid>https://bargenqua.st/posts/mods-4/</guid>
-      <description>The story so far In order to explore the origins and prevalence of a personally-beloved drum loop sample named BRBEATLP.958, I&#39;ve fingerprinted and catalogued every sample of every MOD/S3M/XM/IT file in the Mod Archive so that I can hunt it down amidst tens of thousands of different songs. Now it&#39;s time to see where this takes us.
- Part one Part two Part three  How many songs used BRBEATLP.958? I found fifty-four different songs which all used (or at least included) BRBEATLP.</description>
+      <description>The story so far In order to explore the origins and prevalence of a personally-beloved drum loop sample named BRBEATLP.958, I&amp;rsquo;ve fingerprinted and catalogued every sample of every MOD/S3M/XM/IT file in the Mod Archive so that I can hunt it down amidst tens of thousands of different songs. Now it&amp;rsquo;s time to see where this takes us.
+Part one Part two Part three How many songs used BRBEATLP.958? I found fifty-four different songs which all used (or at least included) BRBEATLP.</description>
     </item>
     
     <item>
@@ -38,7 +44,7 @@ Disclaimer: I&#39;ve done the best I can to clean the data I gathered and ensure
       
       <guid>https://bargenqua.st/posts/mods-3/</guid>
       <description>The story so far Obsessed with the muffled, 8KHz mono perfection of a drum-loop used in an old ScreamTracker III module, I aim to seek out how many other modules may have used the same sample.. but not before some hard nostalgia-blast reminiscing over the tracking subculture as a whole.
- Part one Part two  Forming the battle plan First thing&#39;s first: if I was to figure out how many other songs might&#39;ve used BRBEATLP.</description>
+Part one Part two Forming the battle plan First thing&amp;rsquo;s first: if I was to figure out how many other songs might&amp;rsquo;ve used BRBEATLP.</description>
     </item>
     
     <item>
@@ -56,7 +62,7 @@ Disclaimer: I&#39;ve done the best I can to clean the data I gathered and ensure
       <pubDate>Sun, 14 Jun 2020 20:16:39 +1000</pubDate>
       
       <guid>https://bargenqua.st/posts/mods-1/</guid>
-      <description>Preamble In my small amounts of spare time these past few lockdown-fueled months, I&#39;ve been casually poking at a dumb idea. Like so many dumb ideas, it didn&#39;t really amount to much itself, but it did spawn some other successively dumber ideas. And, well, those didn&#39;t amount to much either. But! It sure was a fun, nostalgic and educational ride.. and I guess there&#39;s a bit of entertaining trivia to be gained along the way.</description>
+      <description>Preamble In my small amounts of spare time these past few lockdown-fueled months, I&amp;rsquo;ve been casually poking at a dumb idea. Like so many dumb ideas, it didn&amp;rsquo;t really amount to much itself, but it did spawn some other successively dumber ideas. And, well, those didn&amp;rsquo;t amount to much either. But! It sure was a fun, nostalgic and educational ride.. and I guess there&amp;rsquo;s a bit of entertaining trivia to be gained along the way.</description>
     </item>
     
   </channel>

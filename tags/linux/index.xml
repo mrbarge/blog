@@ -6,11 +6,7 @@
     <description>Recent content in linux on Matt Bargenquast</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Apr 2020 14:45:38 +1000</lastBuildDate>
-    
-	<atom:link href="https://bargenqua.st/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 25 Apr 2020 14:45:38 +1000</lastBuildDate><atom:link href="https://bargenqua.st/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Shells, pipes and precedence</title>
       <link>https://bargenqua.st/posts/bash-pipes/</link>
@@ -18,7 +14,7 @@
       
       <guid>https://bargenqua.st/posts/bash-pipes/</guid>
       <description>A fun distraction occurred this week when the following snippet of bash code was suggested in a pull request (simplified for demonstrative clarity):
-1if [ echo $VAR1 | grep -q &amp;#34;text&amp;#34; ] || [ $VAR2 -eq 0 ]; then 2 echo &amp;#34;If test passed.&amp;#34; 3else 4 echo &amp;#34;If test failed.&amp;#34; 5fi Taken at initial face value, it looked like it should work okay. There didn&#39;t appear to be anything immediately wrong with its syntax.</description>
+1if [ echo $VAR1 | grep -q &amp;#34;text&amp;#34; ] || [ $VAR2 -eq 0 ]; then 2 echo &amp;#34;If test passed.&amp;#34; 3else 4 echo &amp;#34;If test failed.&amp;#34; 5fi Taken at initial face value, it looked like it should work okay. There didn&amp;rsquo;t appear to be anything immediately wrong with its syntax.</description>
     </item>
     
   </channel>

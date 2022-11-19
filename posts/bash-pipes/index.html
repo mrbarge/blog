@@ -12,7 +12,7 @@
 
 <meta name="twitter:title" content="Shells, pipes and precedence"/>
 <meta name="twitter:description" content="A fun distraction occurred this week when the following snippet of bash code was suggested in a pull request (simplified for demonstrative clarity):
-1if [ echo $VAR1 | grep -q &#34;text&#34; ] || [ $VAR2 -eq 0 ]; then 2 echo &#34;If test passed.&#34; 3else 4 echo &#34;If test failed.&#34; 5fi Taken at initial face value, it looked like it should work okay. There didn&#39;t appear to be anything immediately wrong with its syntax."/>
+1if [ echo $VAR1 | grep -q &#34;text&#34; ] || [ $VAR2 -eq 0 ]; then 2 echo &#34;If test passed.&#34; 3else 4 echo &#34;If test failed.&#34; 5fi Taken at initial face value, it looked like it should work okay. There didn&rsquo;t appear to be anything immediately wrong with its syntax."/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -59,53 +59,53 @@
 </div>
 <div class="content post__content clearfix">
 			<p>A fun distraction occurred this week when the following snippet of <code>bash</code> code was suggested in a pull request (simplified for demonstrative clarity):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> echo $VAR1 | grep -q <span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> $VAR2 -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>   echo <span style="color:#e6db74">&#34;If test passed.&#34;</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#66d9ef">else</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>   echo <span style="color:#e6db74">&#34;If test failed.&#34;</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span style="color:#66d9ef">fi</span>   
-</code></pre></div><p>Taken at initial face value, it looked like it should work okay. There didn't appear to be anything immediately wrong with its syntax. But upon execution, it resulted in a syntax error:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>-bash: <span style="color:#f92672">[</span>: missing <span style="color:#e6db74">`</span><span style="color:#f92672">]</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>grep: <span style="color:#f92672">]</span>: No such file or directory
-</code></pre></div><p>So what's going on here? After all, the following is quite valid:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> false <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>   echo <span style="color:#e6db74">&#34;If test passed.&#34;</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#66d9ef">fi</span>
-</code></pre></div><p>Well, as you've probably guessed from comparing the two examples (if not the header of this very article), the difference is the presence of the pipeline.</p>
-<p>When we're talking <code>sh</code> (shell) grammar,  the <code>if</code> conditional block belongs to a category known as <code>compound commands</code>. Pipelines, as it turns out, take higher precedence in parsing order than compound commands, and this subsequently affects how <code>bash</code> interprets the whole statement.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> echo $VAR1 | grep -q <span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> $VAR2 -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>   echo <span style="color:#e6db74">&#34;If test passed.&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>   echo <span style="color:#e6db74">&#34;If test failed.&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#66d9ef">fi</span>   
+</span></span></code></pre></div><p>Taken at initial face value, it looked like it should work okay. There didn&rsquo;t appear to be anything immediately wrong with its syntax. But upon execution, it resulted in a syntax error:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>-bash: <span style="color:#f92672">[</span>: missing <span style="color:#e6db74">`</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>grep: <span style="color:#f92672">]</span>: No such file or directory
+</span></span></code></pre></div><p>So what&rsquo;s going on here? After all, the following is quite valid:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> false <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>   echo <span style="color:#e6db74">&#34;If test passed.&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><p>Well, as you&rsquo;ve probably guessed from comparing the two examples (if not the header of this very article), the difference is the presence of the pipeline.</p>
+<p>When we&rsquo;re talking <code>sh</code> (shell) grammar,  the <code>if</code> conditional block belongs to a category known as <code>compound commands</code>. Pipelines, as it turns out, take higher precedence in parsing order than compound commands, and this subsequently affects how <code>bash</code> interprets the whole statement.</p>
 <p>If pipelines do take precedence, then <code>bash</code> will treat</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> echo $VAR1
-</code></pre></div><p>as a command, and</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">grep -q <span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> $VAR2 -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span> ...
-</code></pre></div><p>as a command. Now that we know this, the errors make more sense. The leading <code>&quot;missing ]&quot;</code> error is because the first command does indeed have a missing closing bracket. The second <code>&quot;grep: ]: No such file or directory&quot;</code> error is because <code>bash</code> is passing <code>grep</code> the <code>&quot;]&quot;</code> as an argument.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> echo $VAR1
+</span></span></code></pre></div><p>as a command, and</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -q <span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> $VAR2 -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span> ...
+</span></span></code></pre></div><p>as a command. Now that we know this, the errors make more sense. The leading <code>&quot;missing ]&quot;</code> error is because the first command does indeed have a missing closing bracket. The second <code>&quot;grep: ]: No such file or directory&quot;</code> error is because <code>bash</code> is passing <code>grep</code> the <code>&quot;]&quot;</code> as an argument.</p>
 <p>So where can we find out more about the way shell grammar is parsed? The authoritative list is the <a href="https://pubs.opengroup.org/onlinepubs/009695299/utilities/xcu_chap02.html">Shell Grammar Rules</a> documentation. Looking specifically at pipelines, we see:</p>
 <ul>
 <li>A <code>pipeline</code> can be made up of <code>pipe_sequence</code>s.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pipeline         :      pipe_sequence
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pipeline         :      pipe_sequence
+</span></span></code></pre></div><ul>
 <li>A <code>pipe_sequence</code> can be made up of a <code>command</code>, or more <code>pipe_sequence</code>s.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pipe_sequence    :                             command
-                 | pipe_sequence <span style="color:#e6db74">&#39;|&#39;</span> linebreak command
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pipe_sequence    :                             command
+</span></span><span style="display:flex;"><span>                 | pipe_sequence <span style="color:#e6db74">&#39;|&#39;</span> linebreak command
+</span></span></code></pre></div><ul>
 <li>A <code>command</code> can be made up of <code>compound_command</code>s.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">command          : compound_command
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>command          : compound_command
+</span></span></code></pre></div><ul>
 <li>And a <code>compound_command</code> can be made up of <code>if_clause</code>s.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">compound_command : ...
-                 | if_clause
-</code></pre></div><p>So back to the original topic, how should we fix the suggestion? Well, there's probably many ways. I would opt to simplify the <code>if</code> conditional and determine the result of the <code>grep</code> prior:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>VAR1_TEST<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $VAR1 | grep -q <span style="color:#e6db74">&#34;test&#34;</span><span style="color:#66d9ef">)</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>VAR1_RC<span style="color:#f92672">=</span>$?
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $VAR1_RC -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> $VAR2 -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>...
-</code></pre></div><p>However, in this specific case, we could also make use of the bash <code>=~</code> operator to apply a regex test against <code>$VAR1</code> instead.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span><span style="color:#f92672">[</span> $VAR1 <span style="color:#f92672">=</span>~ <span style="color:#e6db74">&#34;test&#34;</span> <span style="color:#f92672">]</span><span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> $VAR2 -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>...
-</code></pre></div><p>Now you might be wondering - why did we use <code>[[</code> and <code>]]</code> here, and why not single brackets? Well, using the double-brackets enables more functionality - including the very <code>=~</code> operator used in this test. There's a good write-up of the differences <a href="http://mywiki.wooledge.org/BashFAQ/031">on this site</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>compound_command : ...
+</span></span><span style="display:flex;"><span>                 | if_clause
+</span></span></code></pre></div><p>So back to the original topic, how should we fix the suggestion? Well, there&rsquo;s probably many ways. I would opt to simplify the <code>if</code> conditional and determine the result of the <code>grep</code> prior:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>VAR1_TEST<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo $VAR1 | grep -q <span style="color:#e6db74">&#34;test&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>VAR1_RC<span style="color:#f92672">=</span>$?
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $VAR1_RC -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> $VAR2 -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>...
+</span></span></code></pre></div><p>However, in this specific case, we could also make use of the bash <code>=~</code> operator to apply a regex test against <code>$VAR1</code> instead.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> $VAR1 <span style="color:#f92672">=</span>~ <span style="color:#e6db74">&#34;test&#34;</span> <span style="color:#f92672">]]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> $VAR2 -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>...
+</span></span></code></pre></div><p>Now you might be wondering - why did we use <code>[[</code> and <code>]]</code> here, and why not single brackets? Well, using the double-brackets enables more functionality - including the very <code>=~</code> operator used in this test. There&rsquo;s a good write-up of the differences <a href="http://mywiki.wooledge.org/BashFAQ/031">on this site</a>.</p>
 
 		</div>
 		<footer class="post__footer">
@@ -133,10 +133,10 @@
 		<img alt="Matt Bargenquast avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">About Matt Bargenquast</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
-		I'm the one in Australia.
+		I&rsquo;m the one in Australia.
 	</div>
 </div>
 
@@ -144,7 +144,7 @@
 <section class="comments">
 	<div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -179,11 +179,11 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/failed-game-dev-1/">I was a failed teenage game developer (part 1)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/mods-5/">To BRBEATLP.958 and beyond (Epilogue)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/cks/">Everything you need to know about the CKS Kubernetes Security Specialist certification (except the answers)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/s2i-python-setuptools/">Keeping setuptools updated in OpenShift Python S2I</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/mods-4/">To BRBEATLP.958 and beyond (part 4): A mystery solved</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/mods-3/">To BRBEATLP.958 and beyond (part 3): Parsing ancient scriptures</a></li>
 		</ul>
 	</div>
 </div>
@@ -254,7 +254,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 Matt Bargenquast.
+			&copy; 2022 Matt Bargenquast.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
