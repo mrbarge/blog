@@ -6,18 +6,14 @@
     <description>Recent content in Cloud on Matt Bargenquast</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Feb 2021 20:01:00 +1000</lastBuildDate>
-    
-	<atom:link href="https://bargenqua.st/categories/cloud/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 03 Feb 2021 20:01:00 +1000</lastBuildDate><atom:link href="https://bargenqua.st/categories/cloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Everything you need to know about the CKS Kubernetes Security Specialist certification (except the answers)</title>
       <link>https://bargenqua.st/posts/cks/</link>
       <pubDate>Wed, 03 Feb 2021 20:01:00 +1000</pubDate>
       
       <guid>https://bargenqua.st/posts/cks/</guid>
-      <description>Having just passed the exam myself, I wanted to do a write-up whilst many of these thoughts are fresh in my mind. Disclaimer: opinions are my own, not my employer&#39;s, etc.
+      <description>Having just passed the exam myself, I wanted to do a write-up whilst many of these thoughts are fresh in my mind. Disclaimer: opinions are my own, not my employer&amp;rsquo;s, etc.
 What is it? The Certified Kubernetes Security Specialist (CKS) is a certification course offered by the Linux Foundation. It builds on the skills required by the Certified Kubernetes Administrator (CKA) certification with a focus on Kubernetes and cloud security. It’s a relatively new certification, having been released in November 2020, and requires the practitioner to firstly hold an active CKA certification.</description>
     </item>
     
@@ -38,7 +34,7 @@ Curious, I checked the build logs and noticed an odd error during the dependency
       <pubDate>Mon, 17 Feb 2020 21:02:21 +1000</pubDate>
       
       <guid>https://bargenqua.st/posts/kubectl-patching/</guid>
-      <description>In this blog we&#39;re going to learn how we can use kubectl&#39;s patch command to modify the configuration of Kubernetes-managed resources via the command-line. Before we do that though, we&#39;ll go through a quick primer on how you can display Kubernetes resources so that you know what and where to patch.
+      <description>In this blog we&amp;rsquo;re going to learn how we can use kubectl&amp;rsquo;s patch command to modify the configuration of Kubernetes-managed resources via the command-line. Before we do that though, we&amp;rsquo;ll go through a quick primer on how you can display Kubernetes resources so that you know what and where to patch.
 Getting Kuberenetes resources One of the first kubectl commands a Kubernetes beginner will become intimately acquainted with is the get command.</description>
     </item>
     

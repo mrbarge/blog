@@ -55,13 +55,13 @@ Curious, I checked the build logs and noticed an odd error during the dependency
 			<p>After a recent commit to a Python project that I work on, I noticed that my resulting OpenShift pod had begun crashlooping after the rebuild.</p>
 <p>A quick check of the pod logs showed why: for some reason, it could no longer find the <code>alembic</code> module, despite that being a transitive dependency of <code>SQLAlchemy</code>, which my project already had in its <code>requirements.txt</code>.</p>
 <p>Curious, I checked the build logs and noticed an odd error during the dependency install:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">egg_info <span style="color:#66d9ef">for</span> package alembic produced metadata <span style="color:#66d9ef">for</span> project name unknown. 
-Fix your <span style="color:#75715e">#egg=alembic fragments.</span>
-</code></pre></div><p>A quick search revealed this to be a common issue experienced in a variety of modules, and the problem in all cases was universally that the version of <a href="https://pypi.org/project/setuptools/">setuptools</a> being used was too old.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>egg_info <span style="color:#66d9ef">for</span> package alembic produced metadata <span style="color:#66d9ef">for</span> project name unknown. 
+</span></span><span style="display:flex;"><span>Fix your <span style="color:#75715e">#egg=alembic fragments.</span>
+</span></span></code></pre></div><p>A quick search revealed this to be a common issue experienced in a variety of modules, and the problem in all cases was universally that the version of <a href="https://pypi.org/project/setuptools/">setuptools</a> being used was too old.</p>
 <p>Fortunately, OpenShift has a quick and easy way to resolve this problem - you can instruct the S2I builder to update its own pip and setuptools modules before commencing the build of your application.</p>
 <p>This is as easy as setting the <code>UPGRADE_PIP_TO_LATEST</code> environment variable to <code>true</code> in your OpenShift buildconfig.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc set env bc/$BUILD_CONFIG_NAME UPGRADE_PIP_TO_LATEST<span style="color:#f92672">=</span>true
-</code></pre></div><p>With this environment set and a new build triggered, I was once again greeted by my application running once more. Hope you find this tip useful!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>oc set env bc/$BUILD_CONFIG_NAME UPGRADE_PIP_TO_LATEST<span style="color:#f92672">=</span>true
+</span></span></code></pre></div><p>With this environment set and a new build triggered, I was once again greeted by my application running once more. Hope you find this tip useful!</p>
 
 		</div>
 		<footer class="post__footer">
@@ -86,10 +86,10 @@ Fix your <span style="color:#75715e">#egg=alembic fragments.</span>
 		<img alt="Matt Bargenquast avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">About Matt Bargenquast</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
-		I'm the one in Australia.
+		I&rsquo;m the one in Australia.
 	</div>
 </div>
 
@@ -97,7 +97,7 @@ Fix your <span style="color:#75715e">#egg=alembic fragments.</span>
 <section class="comments">
 	<div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -132,11 +132,11 @@ Fix your <span style="color:#75715e">#egg=alembic fragments.</span>
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/failed-game-dev-1/">I was a failed teenage game developer (part 1)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/mods-5/">To BRBEATLP.958 and beyond (Epilogue)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/cks/">Everything you need to know about the CKS Kubernetes Security Specialist certification (except the answers)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/s2i-python-setuptools/">Keeping setuptools updated in OpenShift Python S2I</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/mods-4/">To BRBEATLP.958 and beyond (part 4): A mystery solved</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/mods-3/">To BRBEATLP.958 and beyond (part 3): Parsing ancient scriptures</a></li>
 		</ul>
 	</div>
 </div>
@@ -207,7 +207,7 @@ Fix your <span style="color:#75715e">#egg=alembic fragments.</span>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 Matt Bargenquast.
+			&copy; 2022 Matt Bargenquast.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
