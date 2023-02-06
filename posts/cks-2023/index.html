@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Taking the CKS Kubernetes Security Specialist certification in 2023 - Matt Bargenquast</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://bargenqua.st/img/cks2023thumb.png"/>
+
+<meta name="twitter:title" content="Taking the CKS Kubernetes Security Specialist certification in 2023"/>
+<meta name="twitter:description" content="Some time ago, I wrote a post about my experiences studying for and undertaking the Certified Kubernetes Security Specialist exam. Well, the two year validity period for that certification expired for me this past week, and since I’m still floating through the world of Kubernetes in my daily job, I figured I’d attempt to re-acquire it.
+Now that I’m on the tail-end of that experience with the certification back under my belt for another two years, it feels like a good opportunity to revisit this topic and provide some pointers for anyone looking to take (or re-take) the plunge themselves."/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Matt Bargenquast" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Matt Bargenquast</div>
+					<div class="logo__tagline">Hello I&#39;m new here.</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Taking the CKS Kubernetes Security Specialist certification in 2023</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-07T07:31:57&#43;10:00">February 07, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/cloud/" rel="category">Cloud</a>
+	</span>
+</div></div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#has-the-exam-changed-much">Has the exam changed much?</a></li>
+    <li><a href="#how-to-prepare">How to prepare?</a></li>
+    <li><a href="#dont-forget-the-practice-exams">Don’t forget the practice exams</a></li>
+    <li><a href="#you-dont-need-to-memorize-bookmarks">You don’t need to memorize bookmarks..</a></li>
+    <li><a href="#but-you-should-still-be-comfortable-knowing-where-to-find-docs">..but you should still be comfortable knowing where to find docs</a></li>
+    <li><a href="#know-the-api-server">Know the API server</a></li>
+    <li><a href="#remember-you-get-a-re-take">Remember you get a re-take</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<p>Some time ago, I <a href="https://bargenqua.st/posts/cks/">wrote a post</a> about my experiences studying for and undertaking the <a href="https://training.linuxfoundation.org/certification/certified-kubernetes-security-specialist/">Certified Kubernetes Security Specialist</a> exam. Well, the two year validity period for that certification expired for me this past week, and since I’m still floating through the world of Kubernetes in my daily job, I figured I’d attempt to re-acquire it.</p>
+<p>Now that I’m on the tail-end of that experience with the certification back under my belt for another two years, it feels like a good opportunity to revisit this topic and provide some pointers for anyone looking to take (or re-take) the plunge themselves.</p>
+<h2 id="has-the-exam-changed-much">Has the exam changed much?</h2>
+<p>Naturally, I won’t (and can’t) go into details of specific questions that the exam contains, but I found the exam experience in 2023 to be not much different to the experience I had in 2021 in terms of content, length or difficulty.</p>
+<p>Content-wise, there are of course some changes. You can no longer expect any questions about Pod Security Policies, given its <a href="https://kubernetes.io/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/">deprecation</a> in 2021. You can additionally expect the Kubernetes environment to be at least v1.26 (at time of writing). You will not be asked anything that isn’t in some way covered in the list of expected competencies, but you can also safely anticipate not being tested on every single one of them, either.</p>
+<p>The way that the exam is undertaken, however, is markedly different and now performed inside of a dedicated “secure browser” offered by the exam provider rather than a browser running locally. <a href="https://itnext.io/cks-cka-ckad-changed-terminal-to-remote-desktop-157a26c1d5e">This article</a> goes over the changes in some detail. The secure browser was the source of much frustration for me when attempting the exam, resulting in over two hours of troubleshooting with their support team prior to me being able to commence the exam at all. However, my experiences may not be necessarily reflective of anyone else’s, so I will keep most of my thoughts on this experience isolated to a separate blog, if anything.</p>
+<p>What I will note, though, is to pay attention to the <a href="https://helpdesk.psionline.com/hc/en-gb/articles/4409608794260-PSI-Bridge-Platform-System-Requirements">supported OSes</a>! If you’re a Linux user, note that Ubuntu 18.04 and 20.04 are the only “supported” Linux OSes at this time. This means, if you have problems - as I did, running Fedora 37 - the tech support folks are likely to suggest that you just try with an OS that is supported.</p>
+<h2 id="how-to-prepare">How to prepare?</h2>
+<p>I prepared by simply doing a quick 1.5x speed refresher of Killer Shell’s <a href="https://www.udemy.com/course/certified-kubernetes-security-specialist/">CKS Udemy course</a>, which was the same course that I prepared with back in 2021. I still consider this course to be of high quality, and I was quite pleased to note that it’s been updated with new tests for each chapter that operate within killercoda.com’s simulation environment.</p>
+<p>The course content teaches you almost everything you’ll need to know, but more importantly it gives you the skills and knowledge to know how to troubleshoot and find answers to the things that the exam may test you on. Whether you’re studying the certification for the first time, or looking to re-certify, it’s a good option (and no, I’m not affiliated with the course in any way).</p>
+<h2 id="dont-forget-the-practice-exams">Don’t forget the practice exams</h2>
+<p>Another big difference in 2023 is that purchasing the certification exam grants you access to two attempts at a practice CKS exam. The aforementioned Udemy course used to have practice exams, but now it seems that they’ve migrated that to become an official offering that comes with the CKS exam itself.</p>
+<p>Actually finding the links to this exam is curiously challenging. I found it in my browser history by visiting <a href="https://trainingportal.linuxfoundation.org/learn/course/certified-kubernetes-security-specialist-cks/exam/exam">this site</a>, but that’s the only place I recall seeing the link, and I’ll be darned if I could navigate back to that page just by browsing around the training portal. I could just have completely overlooked something here - nevertheless, that’s where you’ll find it.</p>
+<p>Don’t assume that the questions in the real exam will be exactly like the practice exam, or that even the same type of content will be covered. However, if you can confidently do the questions in the practice exam (and not through rote memorisation of answers), you’ll likely possess enough general knowledge to be able to deal with the real exam’s curveballs. The practice exam also tries to emulate the look and feel of the real exam environment as best as it can, too.</p>
+<p>One thing I do want to note is that the practice exam comes with an extremely-well-done “solutions” section that walks through, step by step, the actions needed to answer the question and why they should be performed (or what to interpret from them). It makes a world of difference.</p>
+<p>In short: definitely don’t forget to do the practice exam. At time of writing, once you “start” the exam you’ll have access to it for the next 36 hours, so it’s worth doing in the day or two leading up to your real exam.</p>
+<h2 id="you-dont-need-to-memorize-bookmarks">You don’t need to memorize bookmarks..</h2>
+<p>One mercifully good thing about the CKS exam is that you’re able to access relevant documentation. I linked to a lot of it in my last blog. There’s a list of allowed resources, but don’t worry, you don’t need to memorize these. If you’re asked a question where you might need to consult documentation more specific than just <a href="https://kubernetes.io/docs">https://kubernetes.io/docs</a>, you’ll likely be provided with a direct link to those docs in the question.</p>
+<h2 id="but-you-should-still-be-comfortable-knowing-where-to-find-docs">..but you should still be comfortable knowing where to find docs</h2>
+<p>You’re still going to have a much easier time of things if you can rapidly go from “I’ve been asked a question about X” to reading the most relevant documentation for it that’ll help you in the exam.</p>
+<p>Use the practice exam as an opportunity to refine your documentation search terms and familiarise with the most helpful documentation.</p>
+<h2 id="know-the-api-server">Know the API server</h2>
+<p>It is not a spoiler to say that in this exam you are going to be interacting with the kube-apiserver a lot. You’re going to be configuring it, troubleshooting it, restarting it, securing it.</p>
+<p>Know how to configure the API server. Know where the docs are. Be sure you know how to get to <a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/">this page</a> with all the configuration options on it.</p>
+<p>Know where to look for logs, particularly if you find that the API server just isn’t starting up any more after you make a change. Remember: <code>/var/log/containers/kube-apiserver*</code> !</p>
+<p>Know how to effect an API server restart if you need. Remember: moving the <code>kube-apiserver.yaml</code> file in and out of <code>/etc/kubernetes/manifests</code> will achieve this.</p>
+<h2 id="remember-you-get-a-re-take">Remember you get a re-take</h2>
+<p>Lastly, as mentioned in my previous blog, remember that you get two tries at this. That takes a load of pressure off the first attempt - it’s like getting a sneak peek at the exam before you have to take it! So try to keep those worries at bay. Unless it’s your second attempt, in which case - if you’ve done any of the preparation I’ve mentioned above, don’t worry, you’ll do great!</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/kubernetes/" rel="tag">kubernetes</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/openshift/" rel="tag">openshift</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Matt Bargenquast avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		I&rsquo;m the one in Australia.
+	</div>
+</div>
+
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "mbarg" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://bargenqua.st/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/cks-2023/">Taking the CKS Kubernetes Security Specialist certification in 2023</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/failed-game-dev-1/">I was a failed teenage game developer (part 1)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/mods-5/">To BRBEATLP.958 and beyond (Epilogue)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/cks/">Everything you need to know about the CKS Kubernetes Security Specialist certification (except the answers)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/s2i-python-setuptools/">Keeping setuptools updated in OpenShift Python S2I</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud/">Cloud</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/coding/">Coding</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/things-i-read/">Things I Read</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/year-in-review/">Year In Review</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/advent-of-code/" title="advent of code">advent of code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bash/" title="bash">bash</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/culture/" title="culture">culture</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="golang">golang</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/json/" title="json">json</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="kubernetes">kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="linux">linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openshift/" title="openshift">openshift</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/programming/" title="programming">programming</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="python">python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/retro/" title="retro">retro</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-scripting/" title="shell scripting">shell scripting</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/MattBargenquast" target="_blank">
+				<svg class="widget-social__link-icon icon icon-twitter" width="24" height="24" viewBox="0 0 384 312"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/mrbarge" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:matt@bargenqua.st">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>matt@bargenqua.st</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 Matt Bargenquast.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

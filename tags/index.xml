@@ -6,20 +6,11 @@
     <description>Recent content in Tags on Matt Bargenquast</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Nov 2022 12:49:48 +1000</lastBuildDate><atom:link href="https://bargenqua.st/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>retro</title>
-      <link>https://bargenqua.st/tags/retro/</link>
-      <pubDate>Sat, 19 Nov 2022 12:49:48 +1000</pubDate>
-      
-      <guid>https://bargenqua.st/tags/retro/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Tue, 07 Feb 2023 07:31:57 +1000</lastBuildDate><atom:link href="https://bargenqua.st/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>kubernetes</title>
       <link>https://bargenqua.st/tags/kubernetes/</link>
-      <pubDate>Wed, 03 Feb 2021 20:01:00 +1000</pubDate>
+      <pubDate>Tue, 07 Feb 2023 07:31:57 +1000</pubDate>
       
       <guid>https://bargenqua.st/tags/kubernetes/</guid>
       <description></description>
@@ -28,9 +19,18 @@
     <item>
       <title>openshift</title>
       <link>https://bargenqua.st/tags/openshift/</link>
-      <pubDate>Wed, 03 Feb 2021 20:01:00 +1000</pubDate>
+      <pubDate>Tue, 07 Feb 2023 07:31:57 +1000</pubDate>
       
       <guid>https://bargenqua.st/tags/openshift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>retro</title>
+      <link>https://bargenqua.st/tags/retro/</link>
+      <pubDate>Sat, 19 Nov 2022 12:49:48 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/tags/retro/</guid>
       <description></description>
     </item>
     
