@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Matt Bargenquast</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Nov 2022 12:49:48 +1000</lastBuildDate><atom:link href="https://bargenqua.st/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Feb 2023 07:31:57 +1000</lastBuildDate><atom:link href="https://bargenqua.st/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Taking the CKS Kubernetes Security Specialist certification in 2023</title>
+      <link>https://bargenqua.st/posts/cks-2023/</link>
+      <pubDate>Tue, 07 Feb 2023 07:31:57 +1000</pubDate>
+      
+      <guid>https://bargenqua.st/posts/cks-2023/</guid>
+      <description>Some time ago, I wrote a post about my experiences studying for and undertaking the Certified Kubernetes Security Specialist exam. Well, the two year validity period for that certification expired for me this past week, and since I’m still floating through the world of Kubernetes in my daily job, I figured I’d attempt to re-acquire it.
+Now that I’m on the tail-end of that experience with the certification back under my belt for another two years, it feels like a good opportunity to revisit this topic and provide some pointers for anyone looking to take (or re-take) the plunge themselves.</description>
+    </item>
+    
     <item>
       <title>I was a failed teenage game developer (part 1)</title>
       <link>https://bargenqua.st/posts/failed-game-dev-1/</link>
