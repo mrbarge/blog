@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>kubernetes on Matt Bargenquast</title>
-    <link>https://bargenqua.st/tags/kubernetes/</link>
-    <description>Recent content in kubernetes on Matt Bargenquast</description>
+    <title>Kubernetes on Matt Bargenquast</title>
+    <link>http://localhost:1313/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on Matt Bargenquast</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Feb 2023 07:31:57 +1000</lastBuildDate><atom:link href="https://bargenqua.st/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Feb 2025 14:54:14 +1000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thoughts on taking the Kubernetes CKS and beta CKA exams in 2025</title>
+      <link>http://localhost:1313/posts/cks-cka-2025/</link>
+      <pubDate>Sat, 22 Feb 2025 14:54:14 +1000</pubDate>
+      <guid>http://localhost:1313/posts/cks-cka-2025/</guid>
+      <description>Goodness, how time flies.. two years have gone by since my last blog CKS-related post, enough time for my existing certification to expire.. so I guess it&amp;rsquo;s time to dust off the ol&amp;rsquo; Hugo template and write about it again! I recently re-upped my Certified Kubernetes Security Specialist certification in February, and also got the opportunity to beta-test the 2025 revision of the Certified Kubernetes Administrator one as well. How have things changed for both of these since then?</description>
+    </item>
     <item>
       <title>Taking the CKS Kubernetes Security Specialist certification in 2023</title>
-      <link>https://bargenqua.st/posts/cks-2023/</link>
-      <pubDate>Tue, 07 Feb 2023 07:31:57 +1000</pubDate>
-      
-      <guid>https://bargenqua.st/posts/cks-2023/</guid>
-      <description>Some time ago, I wrote a post about my experiences studying for and undertaking the Certified Kubernetes Security Specialist exam. Well, the two year validity period for that certification expired for me this past week, and since I’m still floating through the world of Kubernetes in my daily job, I figured I’d attempt to re-acquire it.
-Now that I’m on the tail-end of that experience with the certification back under my belt for another two years, it feels like a good opportunity to revisit this topic and provide some pointers for anyone looking to take (or re-take) the plunge themselves.</description>
+      <link>http://localhost:1313/posts/cks-2023/</link>
+      <pubDate>Tue, 07 Feb 2023 14:43:19 +1000</pubDate>
+      <guid>http://localhost:1313/posts/cks-2023/</guid>
+      <description>Some time ago, I wrote a post about my experiences studying for and undertaking the Certified Kubernetes Security Specialist exam. Well, the two year validity period for that certification expired for me this past week, and since I’m still floating through the world of Kubernetes in my daily job, I figured I’d attempt to re-acquire it.&#xA;Now that I’m on the tail-end of that experience with the certification back under my belt for another two years, it feels like a good opportunity to revisit this topic and provide some pointers for anyone looking to take (or re-take) the plunge themselves.</description>
     </item>
-    
     <item>
       <title>Everything you need to know about the CKS Kubernetes Security Specialist certification (except the answers)</title>
-      <link>https://bargenqua.st/posts/cks/</link>
+      <link>http://localhost:1313/posts/cks/</link>
       <pubDate>Wed, 03 Feb 2021 20:01:00 +1000</pubDate>
-      
-      <guid>https://bargenqua.st/posts/cks/</guid>
-      <description>Having just passed the exam myself, I wanted to do a write-up whilst many of these thoughts are fresh in my mind. Disclaimer: opinions are my own, not my employer&amp;rsquo;s, etc.
-What is it? The Certified Kubernetes Security Specialist (CKS) is a certification course offered by the Linux Foundation. It builds on the skills required by the Certified Kubernetes Administrator (CKA) certification with a focus on Kubernetes and cloud security. It’s a relatively new certification, having been released in November 2020, and requires the practitioner to firstly hold an active CKA certification.</description>
+      <guid>http://localhost:1313/posts/cks/</guid>
+      <description>Having just passed the exam myself, I wanted to do a write-up whilst many of these thoughts are fresh in my mind. Disclaimer: opinions are my own, not my employer&amp;rsquo;s, etc.&#xA;What is it? The Certified Kubernetes Security Specialist (CKS) is a certification course offered by the Linux Foundation. It builds on the skills required by the Certified Kubernetes Administrator (CKA) certification with a focus on Kubernetes and cloud security. It’s a relatively new certification, having been released in November 2020, and requires the practitioner to firstly hold an active CKA certification.</description>
     </item>
-    
     <item>
       <title>Patching Kubernetes resources with kubectl</title>
-      <link>https://bargenqua.st/posts/kubectl-patching/</link>
+      <link>http://localhost:1313/posts/kubectl-patching/</link>
       <pubDate>Mon, 17 Feb 2020 21:02:21 +1000</pubDate>
-      
-      <guid>https://bargenqua.st/posts/kubectl-patching/</guid>
-      <description>In this blog we&amp;rsquo;re going to learn how we can use kubectl&amp;rsquo;s patch command to modify the configuration of Kubernetes-managed resources via the command-line. Before we do that though, we&amp;rsquo;ll go through a quick primer on how you can display Kubernetes resources so that you know what and where to patch.
-Getting Kuberenetes resources One of the first kubectl commands a Kubernetes beginner will become intimately acquainted with is the get command.</description>
+      <guid>http://localhost:1313/posts/kubectl-patching/</guid>
+      <description>In this blog we&amp;rsquo;re going to learn how we can use kubectl&amp;rsquo;s patch command to modify the configuration of Kubernetes-managed resources via the command-line. Before we do that though, we&amp;rsquo;ll go through a quick primer on how you can display Kubernetes resources so that you know what and where to patch.&#xA;Getting Kuberenetes resources One of the first kubectl commands a Kubernetes beginner will become intimately acquainted with is the get command.</description>
     </item>
-    
   </channel>
 </rss>

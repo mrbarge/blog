@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Thoughts on taking the Kubernetes CKS and beta CKA exams in 2025 - Matt Bargenquast</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://bargenqua.st/img/cks-cka-2025.png" /><meta name="twitter:title" content="Thoughts on taking the Kubernetes CKS and beta CKA exams in 2025"/>
+<meta name="twitter:description" content="Goodness, how time flies&hellip; Two years have passed since my last CKS-related blog post—enough time for my certification to expire. So, I guess it&rsquo;s time to dust off the ol&rsquo; Hugo template and write about it again! I recently renewed my Certified Kubernetes Security Specialist certification in February and also had the opportunity to beta-test the 2025 revision of the Certified Kubernetes Administrator exam. How have things changed for both of these?"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Matt Bargenquast" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Matt Bargenquast</div>
+					<div class="logo__tagline">Hello I&#39;m new here.</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Thoughts on taking the Kubernetes CKS and beta CKA exams in 2025</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-02-22T14:54:14&#43;10:00">February 22, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/cloud/" rel="category">Cloud</a>
+	</span>
+</div></div>
+		</header><div class="content post__content clearfix">
+			<p>Goodness, how time flies&hellip; Two years have passed since my last CKS-related blog post—enough time for my certification to expire. So, I guess it&rsquo;s time to dust off the ol&rsquo; Hugo template and write about it again! I recently renewed my Certified Kubernetes Security Specialist certification in February and also had the opportunity to beta-test the 2025 revision of the Certified Kubernetes Administrator exam. How have things changed for both of these? Read on to find out.</p>
+<h2 id="the-virtual-exam-experience">The virtual exam experience</h2>
+<p>I dedicated a sizable portion of my <a href="https://bargenqua.st/posts/cks-2023/">last post</a> to bemoaning the virtual exam environment&hellip; so buckle up, because I&rsquo;m about to do it again! This time, I attempted the exam on a Mac Mini running an up-to-date macOS. In theory, this should not have been a problem. It passed the PSI Online compatibility pre-checks, so I went into the exam brimming with confidence in a trouble-free experience. In practice, however, I launched the exam but was unable to proceed because it detected a running <code>SideCarRelay</code> process on my system. I have no idea what that is, but PSI Online apparently does—and they don&rsquo;t like it.</p>
+<p>Troubleshooting random system issues is the last thing anyone wants to do before a tricky and stressful exam, but that was my reality. Killing the process only caused it to respawn. I tried renaming the underlying binary, but macOS decided my <code>sudo</code> wasn&rsquo;t quite <code>sudo</code> enough to let me do that. Some frantic searching followed, all while under the time pressure of needing to start the exam within 30 minutes or risk it being marked as a fail. Numerous results suggested various fixes, including disabling iCloud components and screen mirroring, none of which worked. Finally, mercifully, I found a small post suggesting I disable Bluetooth. However, both my keyboard and mouse were Bluetooth devices!</p>
+<p>After frantically hunting for a wired keyboard and mouse with the correct ports—the Mac Mini has only two USB-A ports, one of which was occupied by the required webcam, meaning I had to find a USB-C mouse—I eventually disabled Bluetooth. After a reboot, I was finally able to permanently kill SideCarRelay and proceed with the exam.</p>
+<p>The next ten minutes were spent giving the anonymous exam proctor a webcam tour of my room and body cavities, which at least gave me time to catch my breath before diving into the two-hour exam completely frazzled. Suffice it to say, this was not an ideal start.</p>
+<p>Once inside the exam, things were mostly stable, except for a ten-minute period where my network connection started lagging, turning commands like <code>k get deploy</code> into <code>k get ddddddddddeploy</code>. Not exactly what you want when time is tight. This may have been an issue on my or my ISP&rsquo;s end, though I regularly use remote desktop software and rarely experience similar problems.</p>
+<p>TL;DR: If you&rsquo;re on a Mac and can&rsquo;t get rid of <code>SideCarRelay</code>, try turning off Bluetooth.</p>
+<h2 id="the-cks-exam-in-2025">The CKS exam in 2025</h2>
+<p>The CKS underwent a <a href="https://training.linuxfoundation.org/cks-program-changes/">refresh</a> in October 2024, introducing some <a href="https://www.youtube.com/watch?v=3YWLuidA2JI">important changes</a>. These changes were included in my exam, so expect them in yours. Notably, you should familiarize yourself with Software Bill of Materials (SBOM) generation and Cilium network policies.</p>
+<p>Fortunately, the exam still includes a complementary practice test provided by <a href="https://killer.sh">Killer Shell</a>. Much like my 2023 experience, I found it to be excellent and thorough. If you don&rsquo;t attempt the practice exam at least once and review the solutions afterward, you&rsquo;re doing yourself a great disservice. I firmly believe that mastering it adequately prepares you for the real exam.</p>
+<p>That said, time management is crucial. I was confident in almost every question, yet I still ran out of time before finishing everything. <em>Have a time management strategy in place and use it</em>. Here&rsquo;s what worked for me (your approach may vary):</p>
+<ul>
+<li><strong>Questions are not ordered by difficulty</strong>. Easier ones may be at the end. Check ahead and prioritize those you can answer without consulting documentation. Flag tougher ones for later.</li>
+<li><strong>Skim ahead but don&rsquo;t overdo it</strong>. Reviewing all the questions at the start wastes time. Instead, I aimed to stay aware of the next five or so questions.</li>
+<li><strong>Know when to move on</strong>. If you&rsquo;re stuck for more than a few minutes, flag the question and return to it later. Don&rsquo;t get bogged down.</li>
+<li><strong>Don&rsquo;t wait for stuff to finish, keep working</strong>. For example, if you&rsquo;ve changed <code>/etc/kubernetes/manifests/kube-apiserver.yaml</code> and are waiting for everything to restart, move on to another question in the meantime, and return later to verify everything worked.</li>
+</ul>
+<p>For me, the biggest learning curve was <a href="https://docs.cilium.io/en/latest/security/policy/index.html">Cilium network policies</a>. The excellent <a href="https://editor.networkpolicy.io/">online network policy editor</a> helped me construct different scenarios and translate them into policies. If you want to experiment in a live environment, Killer Coda offers a free <a href="https://killercoda.com/killer-shell-cks/scenario/playground-cilium">Cilium playground</a>.</p>
+<h2 id="the-refreshed-cka-exam-in-2025">The refreshed CKA exam in 2025</h2>
+<p>In January, I had the opportunity to beta-test the revised 2025 <em>Certified Kubernetes Administrator</em> exam. My understanding is that the 2025 changes were <a href="https://training.linuxfoundation.org/certified-kubernetes-administrator-cka-program-changes/">planned to go live</a> on February 18, though I&rsquo;m unsure if that has happened. Regardless, please note that my opinions here are based on the beta, and the final exam may differ.</p>
+<p>I found the CKA exam to be even more of a time crunch than the CKS. My time expired with several questions left unanswered, largely due to:</p>
+<ul>
+<li>
+<p><strong>Poor time management</strong>. I spent too long on individual questions instead of moving on. I took the CKA before the CKS, and it was a wake-up call to improve my approach.</p>
+</li>
+<li>
+<p><strong>Lack of familiarity with some topics</strong>. I needed to consult external documentation but didn&rsquo;t realize some external sites were allowed. Although they weren&rsquo;t on the overall list of permitted resources, certain questions explicitly stated their documentation could be used. This may be clarified in the final version of the exam.</p>
+</li>
+</ul>
+<p>On the whole, while I believe the exam is achievable within the time limit, there is very little room for leisurely searching through documentation.</p>
+<p>As for content, the new exam incorporated updated curriculum topics. I was particularly pleased with the changes, as the questions were more challenging and avoided rote repetition of documentation examples. For instance, one question required installing a cluster—similar to previous versions of the CKA—but this time, it had to be configured with automatic modifications. These adjustments make the certification more reflective of real-world administrative scenarios.</p>
+<h2 id="the-obligatory-ai-bit-and-is-it-all-worth-it">The obligatory AI bit, and, is it all worth it?</h2>
+<p>If there&rsquo;s one sure thing that can derail any discussion in the year of 2025, it&rsquo;s AI. When I last did these exams, the current AI trend felt very much in its nascency. Nowadays it&rsquo;s a different story, and it&rsquo;s been on my mind as I reflect upon completing both exams, and the overall value of certifications.</p>
+<p>I feel relatively confident that an AI could pass these exams, if one could be wired up to interact with an interactive <code>kubectl</code> prompt. Whether that heralds the death of Kubernetes administration as a stable career choice, I&rsquo;m neither here nor there.</p>
+<p>For my part, I do these certifications because I enjoy throwing myself into these sort of testing situations and assessing whether I can still operate under some degree of pressure, on a topic that I feel I can speak about with some degree of authority.  Does completing both of these mean I&rsquo;m a Kubernetes administration guru? Most certainly not. Would possessing a CKA or CKS certification be a major factor that sways my choice to hire one candidate over another? Goodness gracious no. Still, I find that these sort of certifications are a good, goal-driven way to inspire someone towards achieving a skill or mastery in something.. and if that helps motivate someone to seek and learn rather than depend upon a chatbot.. right now I&rsquo;m all for it.</p>
+<p>(Article thumbnail credit: <a href="https://unsplash.com/photos/a-dog-sitting-in-a-chair-outside-b61qEKQIVNc">Jay Gomez</a>)</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/kubernetes/" rel="tag">kubernetes</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ai/" rel="tag">ai</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Matt Bargenquast avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		I&rsquo;m the one in Australia.
+	</div>
+</div>
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/cks-cka-2025/">Thoughts on taking the Kubernetes CKS and beta CKA exams in 2025</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/cks-2023/">Taking the CKS Kubernetes Security Specialist certification in 2023</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/failed-game-dev-1/">I was a failed teenage game developer (part 1)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/mods-5/">To BRBEATLP.958 and beyond (Epilogue)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/cks/">Everything you need to know about the CKS Kubernetes Security Specialist certification (except the answers)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud/">Cloud</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/coding/">Coding</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/things-i-read/">Things I Read</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/year-in-review/">Year in Review</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/advent-of-code/" title="Advent of Code">Advent of Code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="Ai">Ai</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bash/" title="Bash">Bash</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/culture/" title="Culture">Culture</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="Golang">Golang</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/json/" title="Json">Json</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openshift/" title="Openshift">Openshift</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/programming/" title="Programming">Programming</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/retro/" title="Retro">Retro</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-scripting/" title="Shell Scripting">Shell Scripting</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/MattBargenquast" target="_blank">
+				<svg class="widget-social__link-icon icon icon-twitter" width="24" height="24" viewBox="0 0 384 312"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/mrbarge" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:matt@bargenqua.st">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>matt@bargenqua.st</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Matt Bargenquast.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
