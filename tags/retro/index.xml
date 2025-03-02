@@ -6,8 +6,15 @@
     <description>Recent content in Retro on Matt Bargenquast</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Nov 2022 12:49:48 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Feb 2025 19:00:00 +1000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/retro/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I was a failed teenage game developer (part 2)</title>
+      <link>http://localhost:1313/posts/failed-game-dev-2/</link>
+      <pubDate>Mon, 24 Feb 2025 19:00:00 +1000</pubDate>
+      <guid>http://localhost:1313/posts/failed-game-dev-2/</guid>
+      <description>This blog first appeared in 2008 as a guest article for a friend’s (long since removed) website. To consolidate some of my previous writing in the one place, it has been re-posted with permission, with some edits and lots of additional media added. Think of it like the HD remaster of an old videogame, except it’s a videogame no-one played because it wasn’t very good.&#xA;Also be sure to read part one first!</description>
+    </item>
     <item>
       <title>I was a failed teenage game developer (part 1)</title>
       <link>http://localhost:1313/posts/failed-game-dev-1/</link>

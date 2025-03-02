@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>I was a failed teenage game developer (part 2) - Matt Bargenquast</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://bargenqua.st/img/failed-game-dev-2-thmb.png" /><meta name="twitter:title" content="I was a failed teenage game developer (part 2)"/>
+<meta name="twitter:description" content="This blog first appeared in 2008 as a guest article for a friend’s (long since removed) website. To consolidate some of my previous writing in the one place, it has been re-posted with permission, with some edits and lots of additional media added. Think of it like the HD remaster of an old videogame, except it’s a videogame no-one played because it wasn’t very good.
+Also be sure to read part one first!"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Matt Bargenquast" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Matt Bargenquast</div>
+					<div class="logo__tagline">Hello I&#39;m new here.</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">I was a failed teenage game developer (part 2)</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-02-24T19:00:00&#43;10:00">February 24, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/coding/" rel="category">Coding</a>
+	</span>
+</div></div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#apathy-vs-puberty">Apathy vs puberty</a></li>
+    <li><a href="#the-grod-saga">The Grod saga</a></li>
+    <li><a href="#the-apex-of-creation">The apex of creation</a></li>
+    <li><a href="#epilogue">Epilogue</a></li>
+    <li><a href="#epilogue-of-the-epilogue-and-a-tease-of-whats-to-come">Epilogue of the epilogue, and a tease of what&rsquo;s to come</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<blockquote>
+<p><em>This blog first appeared in 2008 as a guest article for a friend’s (long since removed) website. To consolidate some of my previous writing in the one place, it has been re-posted with permission, with some edits and lots of additional media added. Think of it like the HD remaster of an old videogame, except it’s a videogame no-one played because it wasn’t very good.</em></p>
+<p><em>Also be sure to read <a href="../failed-game-dev-1/">part one</a> first!</em></p>
+</blockquote>
+<h2 id="apathy-vs-puberty">Apathy vs puberty</h2>
+<p>It had always been a distant dream of mine to be a game programmer. At the time, of course, it was possible for young coders to whip up popular games in their own garage and flog them off as shareware. This shut-in, computer-chained lifestyle seemed like the sort of one I wanted to lead.</p>
+<p>My bedroom had cut-out magazine pictures of my gaming heroes.. a PC Gamer interview with iD Software back in the Doom days, a Commodore 64 magazine piece on <a href="https://en.wikipedia.org/wiki/Jeff_Minter">Jeff Minter</a>, a shoddily self-drawn <a href="https://www.c64-wiki.com/wiki/File:System3_logo.jpg">System 3 logo</a>.. I&rsquo;d gaze up at them almost daily, pinned on my little cork bulletin board.</p>
+<figure><a href="images/idsoftware.png"><img src="images/idsoftware.png"
+         alt="This bunch of nerds was the first thing I saw every day." width="400x"/></a><figcaption>
+            <p>This bunch of nerds was the first thing I saw every day.</p>
+        </figcaption>
+</figure>
+
+<p>I tried somewhat half-heartedly to achieve that dream. After saving months worth of allowance money, I finally managed to gather enough dough to purchase Andre LaMothe&rsquo;s enormous book <a href="https://doomwiki.org/wiki/Tricks_of_the_Game-Programming_Gurus">Tricks of the Game Programming Gurus</a>, hoping that it would bless me with its game development knowledge. It was littered with code snippets showing how to write an engine, perform graphical tricks, play sound, and so on. It also weighed in at a rather imposing 700+ pages, giving it definite blugeoning potential. I think it may actually feature as a murder weapon in some editions of <em>Cluedo</em>.</p>
+<p>The sheer intimidation factor alone left me unimpressed, and it turns out that doing graphics usually requires you to be competent at <em>maths</em> (shudder), so I quickly returned back to the familiar comforts of my QBasic world.</p>
+<p>During the last two years of high school, I also kept a running diary about how I was going to create a 3D SWAT-based game. I used pages upon pages to lay out the game design and describe how it would work. Looking back on it, some of it was rather cool, even though Sierra have since made a game franchise that was pretty much exactly what I had in mind. Here&rsquo;s my crazy mind at work in the diary&rsquo;s debut entry:</p>
+<pre tabindex="0"><code>Had a good idea while I was in the shower this morning - I&#39;m going to write
+a 3D game! So now I&#39;m left with a problem - what will I write about?
+It has to be original (which is tough these days as a lot of ideas are
+taken), has to be multiplayer (my rule of game programming no 2 - games 
+MUST be multiplayer!), has to be extremely atmospheric, and has to be
+absolutely awesome! It took me a while, but I&#39;ve finally thought of
+something. You know how on that &#34;Cops&#34; show the SWAT guys break into
+buildings in an attempt to kill or arrest some villian who is inside?
+This would be the most awesome opportunity for a multiplayer game...
+</code></pre><p>In retrospect, I&rsquo;m intrigued by these &ldquo;rules of game programming&rdquo; that I&rsquo;ve apparently established.. but I&rsquo;m even more intrigued by whatever-the-heck this episode of <em>Cops</em> is that I&rsquo;m referring to.</p>
+<p>The entry continues, describing the sound design:</p>
+<pre tabindex="0"><code>Sound will be a high priority, I want, no, I need
+headphones/mics for the game. This would make for
+interesting conversations between the players..
+
+&#34;RED ONE, THE PERPERTRAITOR IS IN THE SOUTH
+BLOCK, LEVEL 12E. OVER&#34;
+&#34;COPY THAT, RED THREE. I&#39;M THERE. GET BACKUP.&#34;
+&#34;ROGER RED ONE. WE&#39;RE COMING. OVER...&#34;
+
+and stuff like that. You could have conversations during
+the game!! And you could chose which person to talk to as
+well. No music - that would spoil the atmosphere. Cool.
+</code></pre><p>Sure, it seemed like a good idea at the time, but as any <em>Call of Duty</em> player can attest, the only thing microphones have brought to gaming is the ability for anonymous twelve-year-olds to call me a variety of slurs I simply can&rsquo;t repeat here.</p>
+<p>Just like the Hindenburg, so too did the plans for &ldquo;SWAT&rdquo; begin to slowly crash and burn, with my interest waning and the diary transforming into an often-cringeworthy fest of teenage angst.</p>
+<pre tabindex="0"><code>Seriously though, would I read this diary 20 years on and find it
+funny, or would I be disturbed by it? Think I wouldn&#39;t even be alive
+in 20 f^cking years time to read this baby. Really.
+Man, me at 37. Now there&#39;s a thought. Would I be married? Hardly. Who
+would marry me? And where would I meet them? So what would I be doing? 
+Working in the IT industry? Somehow I have my doubts bout that. Can&#39;t 
+rely on my parents for ever. My life is just a waste. NO.
+</code></pre><p>Hah-hah, <em>JOKE&rsquo;S ON YOU</em> 17-year-old me!</p>
+<p>&hellip;</p>
+<p>&hellip;&hellip; well, shit.</p>
+<p>It wasn&rsquo;t all lost dreams and skipped opportunites, mind you. Oh no. I did make some games. Five of them, in fact. And after looking back on them, well, maybe it was for the best that I didn&rsquo;t end up in the business after all.</p>
+<h2 id="the-grod-saga">The Grod saga</h2>
+<p>My first three games were all terrible text adventures based upon a pre-existing Commodore 64 game named <a href="https://www.youtube.com/watch?v=RygiuANd50o">Grod the Demented Pixie</a>. Actually, calling them <em>text adventures</em> might be a stretch.. they all largely involved a series of picking random action choices (A, B or C), one of which was going to be the correct answer, with the other two leading to <strong>GAME OVER</strong>. No clues were given as to the correct answer, and most of the time it was just things that a 14-year-old would find cool or funny. As in the following examples taken from <strong>Grod 3</strong>:</p>
+
+
+
+
+
+ 
+
+
+<div id="carousel1" class="carousel" duration="7000">
+    <ul>
+      
+        <li id="c1_slide1" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod3/grod3-1.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c1_slide2" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod3/grod3-2.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c1_slide3" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod3/grod3-3.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c1_slide4" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod3/grod3-4.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c1_slide5" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod3/grod3-5.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+    </ul>
+    <ol>
+      
+        <li><a href="#c1_slide1"></a></li>
+      
+        <li><a href="#c1_slide2"></a></li>
+      
+        <li><a href="#c1_slide3"></a></li>
+      
+        <li><a href="#c1_slide4"></a></li>
+      
+        <li><a href="#c1_slide5"></a></li>
+      
+    </ol>
+    <div class="prev">&lsaquo;</div>
+    <div class="next">&rsaquo;</div>
+</div>
+
+<p>Take note of that <code>I came up with everything else in all the Grod games</code> bit in one of the screenshots.. we&rsquo;ll be returning to that shortly.</p>
+<p>At the time I was pretty proud of my creations, crude as they were. But one fateful day at school, Tony - my good friend and coding rival from <a href="../failed-game-dev-1/">part one</a>, operating under his &ldquo;company&rdquo; persona of  <strong>BISHTRONICS</strong> - gave me a disk containing a solitary file. When I got home, I inserted the disk and inspected the contents. It was that moment that the world changed.</p>
+<pre tabindex="0"><code>C:\&gt; DIR A:\
+
+Volume in drive A is QBASIC
+ Volume Serial Number is 1234-5678
+
+ Directory of A:\
+
+GROD4    BAS       49,345  10-15-94  12:34p
+
+        1 file(s)     49,345 bytes
+        1 dir(s)      1,280,720 bytes free
+</code></pre><p><strong>GROD4.BAS</strong>&hellip;</p>
+<p>Tony had gone and written an unofficial sequel to my precious babies.</p>
+<p>I loaded it up, and my jaw dropped. It featured something the other Grod games didn&rsquo;t.. actual animated graphics and sound!</p>
+
+
+
+
+
+ 
+
+
+<div id="carousel2" class="carousel" duration="7000">
+    <ul>
+      
+        <li id="c2_slide1" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-1.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide2" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-2.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide3" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-3.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide4" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-4.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide5" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-5.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide6" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-6.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide7" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-7.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide8" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-8.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide9" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-9.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide10" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-10.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide11" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-11.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide12" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-12.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide13" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-13.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide14" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-14.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide15" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-15.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide16" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-16.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide17" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-17.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide18" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-18.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide19" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-19.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c2_slide20" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod4/grod4-20.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+    </ul>
+    <ol>
+      
+        <li><a href="#c2_slide1"></a></li>
+      
+        <li><a href="#c2_slide2"></a></li>
+      
+        <li><a href="#c2_slide3"></a></li>
+      
+        <li><a href="#c2_slide4"></a></li>
+      
+        <li><a href="#c2_slide5"></a></li>
+      
+        <li><a href="#c2_slide6"></a></li>
+      
+        <li><a href="#c2_slide7"></a></li>
+      
+        <li><a href="#c2_slide8"></a></li>
+      
+        <li><a href="#c2_slide9"></a></li>
+      
+        <li><a href="#c2_slide10"></a></li>
+      
+        <li><a href="#c2_slide11"></a></li>
+      
+        <li><a href="#c2_slide12"></a></li>
+      
+        <li><a href="#c2_slide13"></a></li>
+      
+        <li><a href="#c2_slide14"></a></li>
+      
+        <li><a href="#c2_slide15"></a></li>
+      
+        <li><a href="#c2_slide16"></a></li>
+      
+        <li><a href="#c2_slide17"></a></li>
+      
+        <li><a href="#c2_slide18"></a></li>
+      
+        <li><a href="#c2_slide19"></a></li>
+      
+        <li><a href="#c2_slide20"></a></li>
+      
+    </ol>
+    <div class="prev">&lsaquo;</div>
+    <div class="next">&rsaquo;</div>
+</div>
+
+<p>At the time, this was the most amazing thing I&rsquo;d ever seen. Yes, even more amazing than <em>Robocop</em>. My mind was blown. I <em>should</em> have been flattered. In hindsight, I absolutely am. But this was <em>such</em> a step up from my own dismal creations that, in the moment, I couldn&rsquo;t see it as anything but a reinforcement of my perceived lack of technical prowess.</p>
+<p>I stewed over it before landing upon my response - to spend the next few weeks tirelessly writing what I hoped would be the ultimate Grod game, <strong>Grod 5</strong>. A returned volley; one that would be game-set-match <strong>BARGOSOFT</strong>.</p>
+<p>At this point, though, I would like to take a brief tangent. We need to talk about drawing graphics in QBasic with the <code>DRAW</code> function. It&rsquo;s one of the most mind-numbing things one can ever hope to do. It&rsquo;s full of statements like:</p>
+<pre tabindex="0"><code>DRAW &#34;BL200 bd100 r50 u60 r300 l250 g50 e50 r250 u20 .....&#34;
+</code></pre><p>that draw each line pixel by pixel. I couldn&rsquo;t even tell you what the above does anymore, but I vividly recall the endless repetition of tweaking <code>DRAW</code> statements, running code to see if it looked alright (it wouldn&rsquo;t), rinse and repeat. But hell, it was a sacrifice worth making: my reputation - <strong>BARGOSOFT&rsquo;S</strong> reputation - was on the line here, so if it meant nights of sitting there manually creating terribly simple graphics line-by-line, then so be it.</p>
+<p>Suffice to say, Grod 5, like all the other games, pretty much sucked. Although it featured such gameplay additions as secret rooms (<em>during &ldquo;A,B,C&rdquo; prompts, you needed to type a phrase that no-one in their right mind would type without looking at the code itself</em>), and non-linear progression (<em>you can go via the left door&hellip;. or the right door..!</em>), it was still the same crusty old Grod underneath. So bad, in fact, that when replaying it for this blog and dying for the umpteenth time, I gave up on trying to beat it at all.</p>
+
+
+
+
+
+ 
+
+
+<div id="carousel3" class="carousel" duration="7000">
+    <ul>
+      
+        <li id="c3_slide1" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-1.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide2" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-2.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide3" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-3.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide4" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-4.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide5" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-5.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide6" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-6.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide7" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-7.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide8" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-8.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide9" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-9.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide10" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-10.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide11" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-11.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide12" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-12.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide13" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-13.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide14" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-14.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide15" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-15.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide16" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-16.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c3_slide17" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/grod5/grod5-17.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+    </ul>
+    <ol>
+      
+        <li><a href="#c3_slide1"></a></li>
+      
+        <li><a href="#c3_slide2"></a></li>
+      
+        <li><a href="#c3_slide3"></a></li>
+      
+        <li><a href="#c3_slide4"></a></li>
+      
+        <li><a href="#c3_slide5"></a></li>
+      
+        <li><a href="#c3_slide6"></a></li>
+      
+        <li><a href="#c3_slide7"></a></li>
+      
+        <li><a href="#c3_slide8"></a></li>
+      
+        <li><a href="#c3_slide9"></a></li>
+      
+        <li><a href="#c3_slide10"></a></li>
+      
+        <li><a href="#c3_slide11"></a></li>
+      
+        <li><a href="#c3_slide12"></a></li>
+      
+        <li><a href="#c3_slide13"></a></li>
+      
+        <li><a href="#c3_slide14"></a></li>
+      
+        <li><a href="#c3_slide15"></a></li>
+      
+        <li><a href="#c3_slide16"></a></li>
+      
+        <li><a href="#c3_slide17"></a></li>
+      
+    </ol>
+    <div class="prev">&lsaquo;</div>
+    <div class="next">&rsaquo;</div>
+</div>
+
+<p>As 1994 began to draw to a close so too did my three-year career in QBasic programming, taking with it my desire and patience to write these terrible games. And so, during the warm summer months, I authored my last hurrah: <em>Snake Stone : Death of a Galaxy</em>.</p>
+<h2 id="the-apex-of-creation">The apex of creation</h2>
+<p>Spanning around 2500 lines of code split into three separate files, <em>Snake Stone</em> (yes, a parody of <a href="https://en.wikipedia.org/wiki/Blake_Stone:_Aliens_of_Gold">Blake Stone</a>) was the Grod-style of &ldquo;A,B or C&rdquo; text adventure gaming pushed to its limits. Or at least, the limits of my patience. A long introduction sequence, frequent graphical interludes.. I spent far, far too much time on this baby.</p>
+<p>And yeah, it still pretty much sucked.</p>
+
+
+
+
+
+ 
+
+
+<div id="carousel4" class="carousel" duration="7000">
+    <ul>
+      
+        <li id="c4_slide1" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-1.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c4_slide2" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-2.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c4_slide3" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-3.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c4_slide4" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-4.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c4_slide5" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-5.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c4_slide6" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-6.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c4_slide7" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-7.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c4_slide8" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-8.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c4_slide9" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-9.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c4_slide10" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake1/snake1-10.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+    </ul>
+    <ol>
+      
+        <li><a href="#c4_slide1"></a></li>
+      
+        <li><a href="#c4_slide2"></a></li>
+      
+        <li><a href="#c4_slide3"></a></li>
+      
+        <li><a href="#c4_slide4"></a></li>
+      
+        <li><a href="#c4_slide5"></a></li>
+      
+        <li><a href="#c4_slide6"></a></li>
+      
+        <li><a href="#c4_slide7"></a></li>
+      
+        <li><a href="#c4_slide8"></a></li>
+      
+        <li><a href="#c4_slide9"></a></li>
+      
+        <li><a href="#c4_slide10"></a></li>
+      
+    </ol>
+    <div class="prev">&lsaquo;</div>
+    <div class="next">&rsaquo;</div>
+</div>
+
+<p>There was also a <em>Snake Stone 2</em> planned, but I only managed to write the introduction sequence and the first &ldquo;A, B, C&rdquo; question:</p>
+
+
+
+
+
+ 
+
+
+<div id="carousel5" class="carousel" duration="7000">
+    <ul>
+      
+        <li id="c5_slide1" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake2/snake2-1.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c5_slide2" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake2/snake2-2.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c5_slide3" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake2/snake2-3.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c5_slide4" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake2/snake2-4.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c5_slide5" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake2/snake2-5.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c5_slide6" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake2/snake2-6.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+        <li id="c5_slide7" style="min-width: calc(100%/1); padding-bottom: 500px;">
+          <img src="/img/failed-game-dev-2/snake2/snake2-7.png" alt="" />
+          <div><div></div></div>
+        </li>
+      
+    </ul>
+    <ol>
+      
+        <li><a href="#c5_slide1"></a></li>
+      
+        <li><a href="#c5_slide2"></a></li>
+      
+        <li><a href="#c5_slide3"></a></li>
+      
+        <li><a href="#c5_slide4"></a></li>
+      
+        <li><a href="#c5_slide5"></a></li>
+      
+        <li><a href="#c5_slide6"></a></li>
+      
+        <li><a href="#c5_slide7"></a></li>
+      
+    </ol>
+    <div class="prev">&lsaquo;</div>
+    <div class="next">&rsaquo;</div>
+</div>
+
+<p>I think once I got to that point, I realized that it was about time I invested my efforts in something other than giving a piece of crap a new coat of paint.. like, playing <em>Duke Nukem 3D</em> for instance.</p>
+<p>Yeah.</p>
+<p>That&rsquo;d do just fine.</p>
+<p>And on that note, this two-part epic on 90s teenage nerddom draws to a close.</p>
+<h2 id="epilogue">Epilogue</h2>
+<p>Before BISHTRONICS and BARGOSOFT eventually crumbled into nothingness, a third competitor emerged. Word had spread through the nerd playground that Todd - the IT teacher&rsquo;s son - had written games the likes of which no-one had ever seen anyone write before.</p>
+<p>We were immediately skeptical, and begged to see what these games were. When he finally showed us, our jaws dropped. He&rsquo;d written an air hockey game with actual VGA graphics, smooth animation and SoundBlaster sound. I imagine we were feeling something akin to what the developers of <a href="https://en.wikipedia.org/wiki/Awesome_Possum..._Kicks_Dr._Machino%27s_Butt">Awesome Possum</a> must have felt after seeing <em>Sonic the Hedgehog 2</em>.</p>
+<p>Or.. y&rsquo;know.. how I felt seeing <code>GROD4.BAS</code>.</p>
+<p>Convinced that he couldn&rsquo;t have made it himself, when we next were over at Todd&rsquo;s house for a party, both BISHTRONICS and BARGOSOFT decided to join forces to launch a corporate espionage attempt at finding out our new rival&rsquo;s secrets. When the moments presented themselves, we hunted for anything that might clue us in. Source code, software, you name it.</p>
+<p>I don&rsquo;t honestly know if Tony saw it, but in my mind I can still clearly recall the moment that I did.</p>
+<p>What did I spot, brooding hulkingly in his bedroom?</p>
+<p>A copy of Andre LaMothe&rsquo;s <em>Tricks of the Game Programming Gurus</em>.</p>
+<p>Why hello there, palms! Please meet my face. Repeatedly.</p>
+<p>The end.</p>
+<h2 id="epilogue-of-the-epilogue-and-a-tease-of-whats-to-come">Epilogue of the epilogue, and a tease of what&rsquo;s to come</h2>
+<p>As I tidy up this blog for republishing on my personal site, almost thirty years have passed since those wild QBasic days. That in itself seems unfathomable.</p>
+<p>I do, however, continue to see echoes of the silliness myself and Tony got up to in the modern day. There&rsquo;s an endless flood of indie trash uploaded to Steam every month written by teenagers who figured out how to do something creative with their PC, stuffed it full of inside jokes, and decided to upload it for shits&rsquo;n&rsquo;giggles. So it&rsquo;d seem some things will never change.</p>
+<p>Republishing this blog has been worth it for at least one reason beyond simply huddling under comfortable blanket of nostalgia. Tony, whom I&rsquo;d fallen out of contact with since high school ended, somehow stumbled upon Part 1 of this blog a couple of years ago and reached out. He took it all in good humour, and hopefully he&rsquo;ll do so with this one as well. So that&rsquo;s cool!</p>
+<p>I&rsquo;m also pleased to note that <strong>Grod&rsquo;s</strong> adventures didn&rsquo;t end in 1995 after all. What exactly does that mean? I guess you&rsquo;ll have to wait until the next part to find out.. and hopefully not quite as long.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/retro/" rel="tag">retro</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Matt Bargenquast avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		I&rsquo;m the one in Australia.
+	</div>
+</div>
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q" aria-label="SEARCH...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/failed-game-dev-2/">I was a failed teenage game developer (part 2)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/cks-cka-2025/">Thoughts on taking the Kubernetes CKS and beta CKA exams in 2025</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/cks-2023/">Taking the CKS Kubernetes Security Specialist certification in 2023</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/failed-game-dev-1/">I was a failed teenage game developer (part 1)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/mods-5/">To BRBEATLP.958 and beyond (Epilogue)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud/">Cloud</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/coding/">Coding</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/things-i-read/">Things I Read</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/year-in-review/">Year in Review</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/advent-of-code/" title="Advent of Code">Advent of Code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="Ai">Ai</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bash/" title="Bash">Bash</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/culture/" title="Culture">Culture</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="Golang">Golang</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/json/" title="Json">Json</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openshift/" title="Openshift">Openshift</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/programming/" title="Programming">Programming</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/retro/" title="Retro">Retro</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell-scripting/" title="Shell Scripting">Shell Scripting</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/MattBargenquast" target="_blank">
+				<svg class="widget-social__link-icon icon icon-twitter" width="24" height="24" viewBox="0 0 384 312"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/mrbarge" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:matt@bargenqua.st">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>matt@bargenqua.st</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 Matt Bargenquast.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+
+<script type="text/javascript" src="/js/carousel.js"></script>
+<link rel="stylesheet" href="/css/carousel.css">
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
